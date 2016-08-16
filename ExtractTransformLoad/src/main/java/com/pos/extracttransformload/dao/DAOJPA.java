@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 /**
@@ -12,7 +13,7 @@ import javax.persistence.Query;
  * @param <T>
  */
 public class DAOJPA<T> implements DAO<T> {
-
+    
     protected EntityManager entityManager;
 
     public DAOJPA() {
