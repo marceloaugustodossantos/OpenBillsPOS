@@ -6,9 +6,12 @@
 package com.pos.extracttransformload.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -16,141 +19,294 @@ import javax.persistence.Id;
  */
 @Entity
 public class ReceitaCandidato implements Serializable {
+     
+    @Id @GeneratedValue
+    private long id;
+    private String ano;                     //- ANO - Ano da campanha
+    private long sequencial_candidato;      //- SEQUENCIAL_CANDIDATO - Número Sequencial do Candidato
+    private String nm_candidato;            //- NM_CANDIDATO - Nome do candidato;    
+    private String sexo;                    //- SEXO - Sexo do(a) candidato(a);
+    private String ds_cargo;                //- DS_CARGO - Descrição do cargo;
+    private String nr_candidato;            //- NR_CANDIDATO - Número do candidato;
+    private String sg_ue_superior;          //- SG_UE_SUPERIOR - Unidade da federação do candidato;
+    private String sg_ue;                   //- SG_UE - Código do município;
+    private String ds_nr_titulo_eleitor;    //- DS_NR_TITULO_ELEITOR - Título eleitoral;
+    private String cd_num_cpf;              //- CD_NUM_CPF - CPF do candidato;
+    private String cd_num_cnpj;             //- CD_NUM_CNPJ - CNPJ de campanha;
+    private String nr_partido;              //- NR_PARTIDO - Número do partido;
+    private String sg_partido;              //- SG_PARTIDO - Sigla do partido;
+    private String vr_receita;              //- VR_RECEITA - Valor da receita;
+    private String dt_receita;              //- DT_RECEITA - Data da receita;
+    private String ds_titulo;               //- DS_TITULO - Tipo de receita;
+    private String cd_titulo;               //- CD_TITULO - Código do tipo de receita;
+    private String ds_esp_recurso;          //- DS_ESP_RECURSO - Tipo de recurso (Em espécie, Cheque, Estimado, não informado);
+    private String nm_doador;               //- NM_DOADOR - Nome do doador;
+    private String cd_cpf_cnpj_doador;      //- CD_CPF_CNPJ_DOADOR - CPF/CNPJ doador;
+    private String sg_ue_superior1;         //- SG_UE_SUPERIOR1 - Unidade da federação do doador;
+    private String nm_ue1;                  //- NM_UE1 - Nome da unidade da federação;
+    private String sg_ue1;                  //- SG_UE1 - Código do município;
+    private String situacaocadastral;       //- SITUACAOCADASTRAL - Batimento Receita Federal do Brasil;
+    private String nm_adm;                  //- NM_ADM - Nome do administrador financeiro de campanha;
+    private String cd_cpf_adm;              //- CD_CPF_ADM - CPF do administrador financeiro de campanha.
+    
+    
 
-    @Id
-    @GeneratedValue
-    private long sequencialCandidato;
-    private String sgUf;
-    private String sgPart;
-    private String dsCargo;
-    private String noCand;
-    private String nrCand;
-    private String dtReceita;
-    private String cdUfDoador;
-    private String noDoador;
-    private String vrreceita;
-    private String tpRecurso;
+//    "Data e hora";"Sequencial Candidato";"UF";"Sigla Partido";"Número candidato";"Cargo";
+//    "Nome candidato";"CPF do candidato";"Entrega em conjunto?";"Número Recibo Eleitoral";
+//    "Número do documento";"CPF/CNPJ do doador";"Nome do doador";"Data da receita";"Valor receita";
+//    "Tipo receita";"Fonte recurso";"Espécie recurso";"Descrição da receita"
 
     public ReceitaCandidato() {
     }
 
-    public ReceitaCandidato(String sgUf, String sgPart, String dsCargo, String noCand, String nrCand, String dtReceita, String cdUfDoador, String noDoador, String vrreceita, String tpRecurso) {
-        this.sgUf = sgUf;
-        this.sgPart = sgPart;
-        this.dsCargo = dsCargo;
-        this.noCand = noCand;
-        this.nrCand = nrCand;
-        this.dtReceita = dtReceita;
-        this.cdUfDoador = cdUfDoador;
-        this.noDoador = noDoador;
-        this.vrreceita = vrreceita;
-        this.tpRecurso = tpRecurso;
+    public ReceitaCandidato(String ano, long sequencial_candidato, String nm_candidato, String sexo, String ds_cargo, 
+            String nr_candidato, String sg_ue_superior, String sg_ue, String ds_nr_titulo_eleitor, String cd_num_cpf, 
+            String cd_num_cnpj, String nr_partido, String sg_partido, String vr_receita, String dt_receita, 
+            String ds_titulo, String cd_titulo, String ds_esp_recurso, String nm_doador, String cd_cpf_cnpj_doador, 
+            String sg_ue_superior1, String nm_ue1, String sg_ue1, String situacaocadastral, String nm_adm, String cd_cpf_adm) {
+        this.ano = ano;
+        this.sequencial_candidato = sequencial_candidato;
+        this.nm_candidato = nm_candidato;
+        this.sexo = sexo;
+        this.ds_cargo = ds_cargo;
+        this.nr_candidato = nr_candidato;
+        this.sg_ue_superior = sg_ue_superior;
+        this.sg_ue = sg_ue;
+        this.ds_nr_titulo_eleitor = ds_nr_titulo_eleitor;
+        this.cd_num_cpf = cd_num_cpf;
+        this.cd_num_cnpj = cd_num_cnpj;
+        this.nr_partido = nr_partido;
+        this.sg_partido = sg_partido;
+        this.vr_receita = vr_receita;
+        this.dt_receita = dt_receita;
+        this.ds_titulo = ds_titulo;
+        this.cd_titulo = cd_titulo;
+        this.ds_esp_recurso = ds_esp_recurso;
+        this.nm_doador = nm_doador;
+        this.cd_cpf_cnpj_doador = cd_cpf_cnpj_doador;
+        this.sg_ue_superior1 = sg_ue_superior1;
+        this.nm_ue1 = nm_ue1;
+        this.sg_ue1 = sg_ue1;
+        this.situacaocadastral = situacaocadastral;
+        this.nm_adm = nm_adm;
+        this.cd_cpf_adm = cd_cpf_adm;
     }
 
-    public ReceitaCandidato(long sequencialCandidato, String sgUf, String sgPart, String dsCargo, String noCand, String nrCand, String dtReceita, String cdUfDoador, String noDoador, String vrreceita, String tpRecurso) {
-        this.sequencialCandidato = sequencialCandidato;
-        this.sgUf = sgUf;
-        this.sgPart = sgPart;
-        this.dsCargo = dsCargo;
-        this.noCand = noCand;
-        this.nrCand = nrCand;
-        this.dtReceita = dtReceita;
-        this.cdUfDoador = cdUfDoador;
-        this.noDoador = noDoador;
-        this.vrreceita = vrreceita;
-        this.tpRecurso = tpRecurso;
+    public long getId() {
+        return id;
     }
 
-    public long getSequencialCandidato() {
-        return sequencialCandidato;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setSequencialCandidato(long sequencialCandidato) {
-        this.sequencialCandidato = sequencialCandidato;
+    public String getAno() {
+        return ano;
     }
 
-    public String getSgUf() {
-        return sgUf;
+    public void setAno(String ano) {
+        this.ano = ano;
     }
 
-    public void setSgUf(String sgUf) {
-        this.sgUf = sgUf;
+    public long getSequencial_candidato() {
+        return sequencial_candidato;
     }
 
-    public String getSgPart() {
-        return sgPart;
+    public void setSequencial_candidato(long sequencial_candidato) {
+        this.sequencial_candidato = sequencial_candidato;
     }
 
-    public void setSgPart(String sgPart) {
-        this.sgPart = sgPart;
+    public String getNm_candidato() {
+        return nm_candidato;
     }
 
-    public String getDsCargo() {
-        return dsCargo;
+    public void setNm_candidato(String nm_candidato) {
+        this.nm_candidato = nm_candidato;
     }
 
-    public void setDsCargo(String dsCargo) {
-        this.dsCargo = dsCargo;
+    public String getSexo() {
+        return sexo;
     }
 
-    public String getNoCand() {
-        return noCand;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
-    public void setNoCand(String noCand) {
-        this.noCand = noCand;
+    public String getDs_cargo() {
+        return ds_cargo;
     }
 
-    public String getNrCand() {
-        return nrCand;
+    public void setDs_cargo(String ds_cargo) {
+        this.ds_cargo = ds_cargo;
     }
 
-    public void setNrCand(String nrCand) {
-        this.nrCand = nrCand;
+    public String getNr_candidato() {
+        return nr_candidato;
     }
 
-    public String getDtReceita() {
-        return dtReceita;
+    public void setNr_candidato(String nr_candidato) {
+        this.nr_candidato = nr_candidato;
     }
 
-    public void setDtReceita(String dtReceita) {
-        this.dtReceita = dtReceita;
+    public String getSg_ue_superior() {
+        return sg_ue_superior;
     }
 
-    public String getCdUfDoador() {
-        return cdUfDoador;
+    public void setSg_ue_superior(String sg_ue_superior) {
+        this.sg_ue_superior = sg_ue_superior;
     }
 
-    public void setCdUfDoador(String cdUfDoador) {
-        this.cdUfDoador = cdUfDoador;
+    public String getSg_ue() {
+        return sg_ue;
     }
 
-    public String getNoDoador() {
-        return noDoador;
+    public void setSg_ue(String sg_ue) {
+        this.sg_ue = sg_ue;
     }
 
-    public void setNoDoador(String noDoador) {
-        this.noDoador = noDoador;
+    public String getDs_nr_titulo_eleitor() {
+        return ds_nr_titulo_eleitor;
     }
 
-    public String getVrreceita() {
-        return vrreceita;
+    public void setDs_nr_titulo_eleitor(String ds_nr_titulo_eleitor) {
+        this.ds_nr_titulo_eleitor = ds_nr_titulo_eleitor;
     }
 
-    public void setVrreceita(String vrreceita) {
-        this.vrreceita = vrreceita;
+    public String getCd_num_cpf() {
+        return cd_num_cpf;
     }
 
-    public String getTpRecurso() {
-        return tpRecurso;
+    public void setCd_num_cpf(String cd_num_cpf) {
+        this.cd_num_cpf = cd_num_cpf;
     }
 
-    public void setTpRecurso(String tpRecurso) {
-        this.tpRecurso = tpRecurso;
+    public String getCd_num_cnpj() {
+        return cd_num_cnpj;
     }
 
-    @Override
-    public String toString() {
-        return "ReceitasCandidato{" + "sequencialCandidato=" + sequencialCandidato + ", sgUf=" + sgUf + ", sgPart=" + sgPart + ", dsCargo=" + dsCargo + ", noCand=" + noCand + ", nrCand=" + nrCand + ", dtReceita=" + dtReceita + ", cdUfDoador=" + cdUfDoador + ", noDoador=" + noDoador + ", vrreceita=" + vrreceita + ", tpRecurso=" + tpRecurso + '}';
+    public void setCd_num_cnpj(String cd_num_cnpj) {
+        this.cd_num_cnpj = cd_num_cnpj;
     }
+
+    public String getNr_partido() {
+        return nr_partido;
+    }
+
+    public void setNr_partido(String nr_partido) {
+        this.nr_partido = nr_partido;
+    }
+
+    public String getSg_partido() {
+        return sg_partido;
+    }
+
+    public void setSg_partido(String sg_partido) {
+        this.sg_partido = sg_partido;
+    }
+
+    public String getVr_receita() {
+        return vr_receita;
+    }
+
+    public void setVr_receita(String vr_receita) {
+        this.vr_receita = vr_receita;
+    }
+
+    public String getDt_receita() {
+        return dt_receita;
+    }
+
+    public void setDt_receita(String dt_receita) {
+        this.dt_receita = dt_receita;
+    }
+
+    public String getDs_titulo() {
+        return ds_titulo;
+    }
+
+    public void setDs_titulo(String ds_titulo) {
+        this.ds_titulo = ds_titulo;
+    }
+
+    public String getCd_titulo() {
+        return cd_titulo;
+    }
+
+    public void setCd_titulo(String cd_titulo) {
+        this.cd_titulo = cd_titulo;
+    }
+
+    public String getDs_esp_recurso() {
+        return ds_esp_recurso;
+    }
+
+    public void setDs_esp_recurso(String ds_esp_recurso) {
+        this.ds_esp_recurso = ds_esp_recurso;
+    }
+
+    public String getNm_doador() {
+        return nm_doador;
+    }
+
+    public void setNm_doador(String nm_doador) {
+        this.nm_doador = nm_doador;
+    }
+
+    public String getCd_cpf_cnpj_doador() {
+        return cd_cpf_cnpj_doador;
+    }
+
+    public void setCd_cpf_cnpj_doador(String cd_cpf_cnpj_doador) {
+        this.cd_cpf_cnpj_doador = cd_cpf_cnpj_doador;
+    }
+
+    public String getSg_ue_superior1() {
+        return sg_ue_superior1;
+    }
+
+    public void setSg_ue_superior1(String sg_ue_superior1) {
+        this.sg_ue_superior1 = sg_ue_superior1;
+    }
+
+    public String getNm_ue1() {
+        return nm_ue1;
+    }
+
+    public void setNm_ue1(String nm_ue1) {
+        this.nm_ue1 = nm_ue1;
+    }
+
+    public String getSg_ue1() {
+        return sg_ue1;
+    }
+
+    public void setSg_ue1(String sg_ue1) {
+        this.sg_ue1 = sg_ue1;
+    }
+
+    public String getSituacaocadastral() {
+        return situacaocadastral;
+    }
+
+    public void setSituacaocadastral(String situacaocadastral) {
+        this.situacaocadastral = situacaocadastral;
+    }
+
+    public String getNm_adm() {
+        return nm_adm;
+    }
+
+    public void setNm_adm(String nm_adm) {
+        this.nm_adm = nm_adm;
+    }
+
+    public String getCd_cpf_adm() {
+        return cd_cpf_adm;
+    }
+
+    public void setCd_cpf_adm(String cd_cpf_adm) {
+        this.cd_cpf_adm = cd_cpf_adm;
+    }
+    
+    
 }
