@@ -76,7 +76,7 @@ public class ExtractDataService {
                 DespesaCandidato despesaCandidato = new DespesaCandidato(
                         "2004", null, nextLine[0], nextLine[1], nextLine[3], nextLine[4], nextLine[6], null,
                         nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[13],
-                        null, null, null, null, null, null, null, null, null);
+                        null,nextLine[16], nextLine[18], nextLine[21], null, null, nextLine[21], null, null);
 
                 despesasCandidatoDao.addDespesaCandidato(despesaCandidato);
             }
@@ -104,7 +104,7 @@ public class ExtractDataService {
         try {
             String[] nextLine;
             
-            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Candidato/Receita/DespesaCandidato.csv"), ';');
+            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Candidato/Receita/ReceitaCandidato.csv"), ';');
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaCandidato recetaCandidato = new ReceitaCandidato(
@@ -116,7 +116,7 @@ public class ExtractDataService {
                 receitasCandidatoDao.addReceitaCandidato(recetaCandidato);
             }
 
-            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Candidato/Receita/DespesaCandidato.csv"), ';');
+            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Candidato/Receita/ReceitaCandidato.csv"), ';');
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaCandidato recetaCandidato = new ReceitaCandidato(
@@ -127,14 +127,14 @@ public class ExtractDataService {
                 receitasCandidatoDao.addReceitaCandidato(recetaCandidato);
             }
 
-            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/2004/Candidato/Receita/DespesaCandidato.CSV"), ';');
+            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/2004/Candidato/Receita/ReceitaCandidato.CSV"), ';');
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaCandidato recetaCandidato = new ReceitaCandidato(
                         "2004", null, nextLine[0], null, nextLine[1], nextLine[3], nextLine[4], nextLine[5],
                         null, null, null, nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11],
-                        nextLine[12], nextLine[13], null, null, null, null, null, null, null, null);
-
+                        nextLine[12], nextLine[13], nextLine[15], nextLine[16], null, null, null, nextLine[17], null, null);
+                
                 receitasCandidatoDao.addReceitaCandidato(recetaCandidato);
             }
             
@@ -185,16 +185,13 @@ public class ExtractDataService {
                 despesasComiteDao.addDespesaComite(despesaComite);
             }
             
-            //Parei aqui....
-
             reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/2004/Comitê/Despesa/DespesaComitê.CSV"), ';');
 
             while ((nextLine = reader.readNext()) != null) {
                 DespesaComite despesaComite = new DespesaComite(
-                        "2004", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26], nextLine[27], nextLine[28],
-                        nextLine[20], nextLine[20],nextLine[20]);
+                        "2004", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[4], nextLine[5], null,
+                        nextLine[6], nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13],
+                        nextLine[14], nextLine[15], nextLine[16], null, null, null, null, nextLine[17], null, null);
 
                 despesasComiteDao.addDespesaComite(despesaComite);
             }
@@ -203,13 +200,12 @@ public class ExtractDataService {
 
             while ((nextLine = reader.readNext()) != null) {
                 DespesaComite despesaComite = new DespesaComite(
-                        "2002", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26], nextLine[27], nextLine[28],
-                        nextLine[20], nextLine[20],nextLine[20]);
+                        "2002", nextLine[2], null, nextLine[1], nextLine[0], nextLine[0], null, null, nextLine[7], 
+                        nextLine[3], nextLine[8], null, null, null, null, null, null, nextLine[6], nextLine[4], 
+                        nextLine[5], nextLine[5], null, null, null, null, null);
 
                 despesasComiteDao.addDespesaComite(despesaComite);
-            }
+            }        
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {
@@ -227,10 +223,10 @@ public class ExtractDataService {
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaComite receitaComite = new ReceitaComite(
-                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26],nextLine[26]);
-
+                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[4], nextLine[5], nextLine[6],
+                        nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[14],
+                        nextLine[15], nextLine[16], nextLine[17], nextLine[18], nextLine[19],nextLine[20]);          
+                   
                 receitasComiteDao.addReceitaComite(receitaComite);
             }
 
@@ -238,9 +234,9 @@ public class ExtractDataService {
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaComite receitaComite = new ReceitaComite(
-                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26],nextLine[26]);
+                        "2006", nextLine[0], nextLine[1], nextLine[2], nextLine[3], null, null, nextLine[4],
+                        nextLine[5], nextLine[6], nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12],
+                        nextLine[13], nextLine[13], null, nextLine[14], null, null);
 
                 receitasComiteDao.addReceitaComite(receitaComite);
             }
@@ -249,9 +245,9 @@ public class ExtractDataService {
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaComite receitaComite = new ReceitaComite(
-                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26],nextLine[26]);
+                        "2004", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[4], nextLine[5], null,
+                        nextLine[6], nextLine[7], nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13],
+                        null, null, null, nextLine[14], null, null);
 
                 receitasComiteDao.addReceitaComite(receitaComite);
             }
@@ -260,13 +256,13 @@ public class ExtractDataService {
 
             while ((nextLine = reader.readNext()) != null) {
                 ReceitaComite receitaComite = new ReceitaComite(
-                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[4], nextLine[5], nextLine[7], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[15], nextLine[17], nextLine[18],
-                        nextLine[20], nextLine[21], nextLine[22], nextLine[24], nextLine[26],nextLine[26]);
+                        "2002", nextLine[2], null, nextLine[1], nextLine[0], null, null, null,
+                        nextLine[7], nextLine[3], null, null, nextLine[8], null, nextLine[6], nextLine[4],
+                        nextLine[5], null, null, null, null, null);
 
                 receitasComiteDao.addReceitaComite(receitaComite);
             }
-            
+           
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

@@ -4,6 +4,7 @@
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/dao/DAO.java
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/service/ServiceReceitaComite.java
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/service/ServiceDespesasComite.java
+/home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/extractData/Principal.java
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/webservice/server.java
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/extractData/ExtractDataService.java
 /home/marcelo/NetBeansProjects/OpenBills/ExtractTransformLoad/src/main/java/com/pos/extracttransformload/entities/ReceitaCandidato.java
