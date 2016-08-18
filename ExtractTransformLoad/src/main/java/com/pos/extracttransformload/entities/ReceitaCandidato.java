@@ -23,7 +23,7 @@ public class ReceitaCandidato implements Serializable {
     @Id @GeneratedValue
     private long id;
     private String ano;                     //- ANO - Ano da campanha
-    private long sequencial_candidato;      //- SEQUENCIAL_CANDIDATO - Número Sequencial do Candidato
+    private String sequencial_candidato;    //- SEQUENCIAL_CANDIDATO - Número Sequencial do Candidato
     private String nm_candidato;            //- NM_CANDIDATO - Nome do candidato;    
     private String sexo;                    //- SEXO - Sexo do(a) candidato(a);
     private String ds_cargo;                //- DS_CARGO - Descrição do cargo;
@@ -59,7 +59,7 @@ public class ReceitaCandidato implements Serializable {
     public ReceitaCandidato() {
     }
 
-    public ReceitaCandidato(String ano, long sequencial_candidato, String nm_candidato, String sexo, String ds_cargo, 
+    public ReceitaCandidato(String ano, String sequencial_candidato, String nm_candidato, String sexo, String ds_cargo, 
             String nr_candidato, String sg_ue_superior, String sg_ue, String ds_nr_titulo_eleitor, String cd_num_cpf, 
             String cd_num_cnpj, String nr_partido, String sg_partido, String vr_receita, String dt_receita, 
             String ds_titulo, String cd_titulo, String ds_esp_recurso, String nm_doador, String cd_cpf_cnpj_doador, 
@@ -108,11 +108,11 @@ public class ReceitaCandidato implements Serializable {
         this.ano = ano;
     }
 
-    public long getSequencial_candidato() {
+    public String getSequencial_candidato() {
         return sequencial_candidato;
     }
 
-    public void setSequencial_candidato(long sequencial_candidato) {
+    public void setSequencial_candidato(String sequencial_candidato) {
         this.sequencial_candidato = sequencial_candidato;
     }
 
