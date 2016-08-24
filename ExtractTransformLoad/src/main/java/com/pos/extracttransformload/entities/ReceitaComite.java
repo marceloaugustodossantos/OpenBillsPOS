@@ -9,12 +9,28 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marcelo
  */
+@NamedQueries({
+    @NamedQuery(
+            name = "buscar.comitescommaioresreceitas.porestado", 
+            query = "SELECT c FROM ReceitaComite c WHERE c.sg_ue_superior =:estado"),
+    @NamedQuery(
+            name = "buscar.comitescommaioresreceitas.porano", 
+            query = "SELECT c FROM ReceitaComite c WHERE c.ano =:ano"),
+    @NamedQuery(
+            name = "buscar.comitescommaioresreceitas.porestadoeano", 
+            query = "SELECT c FROM ReceitaComite c WHERE c.sg_ue_superior =:estado AND c.ano =:ano"
+    )
+})
 @Entity
+@XmlRootElement
 public class ReceitaComite implements Serializable {
    
     @Id @GeneratedValue
@@ -27,7 +43,7 @@ public class ReceitaComite implements Serializable {
     private String nm_ue;               //- NM_UE - Nome da unidade da federação;
     private String sg_ue;               //- SG_UE - Código do município;
     private String nr_cnpj;             //- NR_CNPJ - CNPJ de campanha;
-    private String vr_receita;          //- VR_RECEITA - Valor da receita;
+    private double vr_receita;          //- VR_RECEITA - Valor da receita;
     private String dt_receita;          //- DT_RECEITA - Data da receita;
     private String ds_titulo;           //- DS_TITULO - Tipo de receita;
     private String cd_titulo;           //- CD_TITULO - Código do tipo de receita;
@@ -42,15 +58,11 @@ public class ReceitaComite implements Serializable {
     private String nm_membro;           //- NM_MEMBRO - Nome do presidente do comitê financeiro;
     private String nr_cpf;              //- NR_CPF - CPF do presidente do comitê.
 
-//    "Data e hora";"UF";"Tipo comite";"Sigla Partido";"Tipo do documento";"Número do documento";
-//    "CPF/CNPJ do doador";"Nome do doador";"Data da receita";"Valor receita";"Tipo receita";
-//    "Fonte recurso";"Espécie recurso";"Descrição da receita" 
-
     public ReceitaComite() {
     }
 
     public ReceitaComite(String ano, String ds_orgao, String nr_partido, String sg_partido, String sg_ue_superior, 
-            String nm_ue, String sg_ue, String nr_cnpj, String vr_receita, String dt_receita, String ds_titulo, 
+            String nm_ue, String sg_ue, String nr_cnpj, double vr_receita, String dt_receita, String ds_titulo, 
             String cd_titulo, String ds_esp_recurso, String cd_esp_recurso, String nm_doador, String cd_cpf_cnpj_doador, 
             String sg_ue_superior1, String nm_ue1, String sg_ue1, String situacaocadastral, String nm_membro, String nr_cpf) {
         this.ano = ano;
@@ -149,11 +161,11 @@ public class ReceitaComite implements Serializable {
         this.nr_cnpj = nr_cnpj;
     }
 
-    public String getVr_receita() {
+    public double getVr_receita() {
         return vr_receita;
     }
 
-    public void setVr_receita(String vr_receita) {
+    public void setVr_receita(double vr_receita) {
         this.vr_receita = vr_receita;
     }
 

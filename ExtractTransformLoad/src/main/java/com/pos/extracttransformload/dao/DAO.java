@@ -23,7 +23,7 @@ public interface DAO<T> {
     
     public T buscar(Object chave, Class<T> entidade);
     
-    public List<T> consultaLista(String consulta,Map<String,Object> parametros);
+    public List<T> consultaLista(String consulta,Map<String,Object> parametros, int qtdeResults);
     
     public T consultaSimples(String consulta,Map<String,Object> parametros);
     

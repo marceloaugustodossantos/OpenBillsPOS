@@ -6,18 +6,31 @@
 package com.pos.extracttransformload.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marcelo
  */
+@NamedQueries({
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresdespesas.porestado", 
+            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado"),
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresdespesas.porano", 
+            query = "SELECT d FROM DespesaCandidato d WHERE d.ano =:ano"),
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresdespesas.porestadoeano", 
+            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado AND d.ano =:ano"
+    )
+})
 @Entity
+@XmlRootElement
 public class DespesaCandidato implements Serializable {
     
     @Id @GeneratedValue
@@ -32,7 +45,7 @@ public class DespesaCandidato implements Serializable {
     private String nr_cnpj;                 //- NR_CNPJ - CNPJ de campanha;
     private String nr_partido;              //- NR_PARTIDO - Número do partido;
     private String sg_part;                 //- SG_PART - Sigla do partido;
-    private String vr_despesa;              //- VR_DESPESA - Valor da despesa;
+    private double vr_despesa;              //- VR_DESPESA - Valor da despesa;
     private String dt_despesa;              //- DT_DESPESA - Data da despesa;
     private String ds_titulo;               //- DS_TITULO - Tipo de despesa;
     private String ds_esp_recurso;          //- DS_ESP_RECURSO - Forma de pagamento (EM ESPÉCIE, CHEQUE, ESTIMADO, NÃO INFORMADO);
@@ -46,17 +59,11 @@ public class DespesaCandidato implements Serializable {
     private String nm_adm;                  //- NM_ADM - Nome do administrador financeiro de campanha;
     private String nr_cpf;                  //- NR_CPF - Número do CPF do administrador financeiro de campanha.
 
-    
-//    "Data e hora";"Sequencial Candidato";"UF";"Sigla Partido";"Número candidato";"Cargo";
-//    "Nome candidato";"CPF do candidato";"Entrega em conjunto?";"Tipo do documento";
-//    "Número do documento";"CPF/CNPJ do fornecedor";"Nome do fornecedor";"Data da despesa";
-//    "Valor despesa";"Tipo despesa";"Fonte recurso";"Espécie recurso";"Descriçao da despesa"
-
     public DespesaCandidato() {
     }
 
     public DespesaCandidato(String ano, String sequencial_candidato, String no_cand, String ds_cargo, String nr_cand, 
-            String sg_ue_superior, String sg_ue, String nr_cnpj, String nr_partido, String sg_part, String vr_despesa, 
+            String sg_ue_superior, String sg_ue, String nr_cnpj, String nr_partido, String sg_part, double vr_despesa, 
             String dt_despesa, String ds_titulo, String ds_esp_recurso, String ds_nr_documento, 
             String ds_tipo_documento, String nm_fornecedor, String cd_cpf_cnpj_fornecedor, 
             String sg_ue_superior1, String sg_ue1, String situacaocadastral, String nm_adm, String nr_cpf) {
@@ -174,11 +181,11 @@ public class DespesaCandidato implements Serializable {
         this.sg_part = sg_part;
     }
 
-    public String getVr_despesa() {
+    public Double getVr_despesa() {
         return vr_despesa;
     }
 
-    public void setVr_despesa(String vr_despesa) {
+    public void setVr_despesa(double vr_despesa) {
         this.vr_despesa = vr_despesa;
     }
 

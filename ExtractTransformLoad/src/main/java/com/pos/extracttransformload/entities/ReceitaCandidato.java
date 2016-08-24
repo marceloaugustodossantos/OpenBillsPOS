@@ -6,18 +6,31 @@
 package com.pos.extracttransformload.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marcelo
  */
+@NamedQueries({
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresreceitas.porestado", 
+            query = "SELECT r FROM ReceitaCandidato r WHERE r.sg_ue_superior =:estado ORDER BY r.vr_receita DESC"),
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresreceitas.porano", 
+            query = "SELECT r FROM ReceitaCandidato r WHERE r.ano =:ano"),
+    @NamedQuery(
+            name = "buscar.candidatoscommaioresreceitas.porestadoeano", 
+            query = "SELECT r FROM ReceitaCandidato r WHERE r.sg_ue_superior =:estado AND r.ano =:ano"
+    )
+})
 @Entity
+@XmlRootElement
 public class ReceitaCandidato implements Serializable {
      
     @Id @GeneratedValue
@@ -35,7 +48,7 @@ public class ReceitaCandidato implements Serializable {
     private String cd_num_cnpj;             //- CD_NUM_CNPJ - CNPJ de campanha;
     private String nr_partido;              //- NR_PARTIDO - Número do partido;
     private String sg_partido;              //- SG_PARTIDO - Sigla do partido;
-    private String vr_receita;              //- VR_RECEITA - Valor da receita;
+    private double vr_receita;              //- VR_RECEITA - Valor da receita;
     private String dt_receita;              //- DT_RECEITA - Data da receita;
     private String ds_titulo;               //- DS_TITULO - Tipo de receita;
     private String cd_titulo;               //- CD_TITULO - Código do tipo de receita;
@@ -49,19 +62,12 @@ public class ReceitaCandidato implements Serializable {
     private String nm_adm;                  //- NM_ADM - Nome do administrador financeiro de campanha;
     private String cd_cpf_adm;              //- CD_CPF_ADM - CPF do administrador financeiro de campanha.
     
-    
-
-//    "Data e hora";"Sequencial Candidato";"UF";"Sigla Partido";"Número candidato";"Cargo";
-//    "Nome candidato";"CPF do candidato";"Entrega em conjunto?";"Número Recibo Eleitoral";
-//    "Número do documento";"CPF/CNPJ do doador";"Nome do doador";"Data da receita";"Valor receita";
-//    "Tipo receita";"Fonte recurso";"Espécie recurso";"Descrição da receita"
-
     public ReceitaCandidato() {
     }
 
     public ReceitaCandidato(String ano, String sequencial_candidato, String nm_candidato, String sexo, String ds_cargo, 
             String nr_candidato, String sg_ue_superior, String sg_ue, String ds_nr_titulo_eleitor, String cd_num_cpf, 
-            String cd_num_cnpj, String nr_partido, String sg_partido, String vr_receita, String dt_receita, 
+            String cd_num_cnpj, String nr_partido, String sg_partido, double vr_receita, String dt_receita, 
             String ds_titulo, String cd_titulo, String ds_esp_recurso, String nm_doador, String cd_cpf_cnpj_doador, 
             String sg_ue_superior1, String nm_ue1, String sg_ue1, String situacaocadastral, String nm_adm, String cd_cpf_adm) {
         this.ano = ano;
@@ -204,11 +210,11 @@ public class ReceitaCandidato implements Serializable {
         this.sg_partido = sg_partido;
     }
 
-    public String getVr_receita() {
+    public double getVr_receita() {
         return vr_receita;
     }
 
-    public void setVr_receita(String vr_receita) {
+    public void setVr_receita(double vr_receita) {
         this.vr_receita = vr_receita;
     }
 

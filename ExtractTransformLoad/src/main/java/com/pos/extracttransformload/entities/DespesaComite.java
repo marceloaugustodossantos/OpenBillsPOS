@@ -9,12 +9,28 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author marcelo
  */
+@NamedQueries({
+    @NamedQuery(
+            name = "buscar.comitescommaioresdespesas.porestado", 
+            query = "SELECT c FROM DespesaComite c WHERE c.sg_ue_superior =:estado"),
+    @NamedQuery(
+            name = "buscar.comitescommaioresdespesas.porano", 
+            query = "SELECT c FROM DespesaComite c WHERE c.ano =:ano"),
+    @NamedQuery(
+            name = "buscar.comitescommaioresdespesas.porestadoeano", 
+            query = "SELECT c FROM DespesaComite c WHERE c.sg_ue_superior =:estado AND c.ano =:ano"
+    )
+})
 @Entity
+@XmlRootElement
 public class DespesaComite implements Serializable {
     
     @Id @GeneratedValue
@@ -27,7 +43,7 @@ public class DespesaComite implements Serializable {
     private String nm_ue;                   //- NM_UE - Nome da unidade da federação;
     private String sg_ue;                   //- SG_UE - Código do município;
     private String nr_cnpj;                 //- NR_CNPJ - CNPJ de campanha;
-    private String vr_despesa;              //- VR_DESPESA - Valor da despesa;
+    private double vr_despesa;              //- VR_DESPESA - Valor da despesa;
     private String dt_despesa;              //- DT_DESPESA - Data da despesa;
     private String ds_titulo;               //- DS_TITULO - Tipo de despesa;
     private String cd_titulo;               //- CD_TITULO - Código do tipo de despesa;
@@ -46,15 +62,11 @@ public class DespesaComite implements Serializable {
     private String nm_membro;               //- NM_MEMBRO - Nome do presidente do comitê;
     private String nr_cpf;                  //- NR_CPF - Número do CPF do presidente do comitê.
 
-    //"Data e hora";"UF";"Tipo comite";"Sigla Partido";"Tipo do documento";"Número do documento";
-//    "CPF/CNPJ do fornecedor";"Nome do fornecedor";"Data da despesa";"Valor despesa";"Tipo despesa";
-//    "Fonte recurso";"Espécie recurso";"Descrição da despesa"
-
     public DespesaComite() {
     }
 
     public DespesaComite(String ano, String ds_orgao, String nr_partido, String sg_partido, String sg_ue_superior, String nm_ue, 
-            String sg_ue, String nr_cnpj, String vr_despesa, String dt_despesa, String ds_titulo, String cd_titulo, 
+            String sg_ue, String nr_cnpj, double vr_despesa, String dt_despesa, String ds_titulo, String cd_titulo, 
             String ds_esp_recurso, String cd_esp_recurso, String ds_nr_documento, String ds_tipo_documento, 
             String cd_tipo_documento, String nm_fornecedor, String cd_cpf_cnpj_fornecedor, String sg_ue_superior1, 
             String nm_ue1, String sg_ue1, String no_ue, String situacaocadastral, String nm_membro, String nr_cpf) {
@@ -158,11 +170,11 @@ public class DespesaComite implements Serializable {
         this.nr_cnpj = nr_cnpj;
     }
 
-    public String getVr_despesa() {
+    public double getVr_despesa() {
         return vr_despesa;
     }
 
-    public void setVr_despesa(String vr_despesa) {
+    public void setVr_despesa(double vr_despesa) {
         this.vr_despesa = vr_despesa;
     }
 
