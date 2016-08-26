@@ -25,17 +25,17 @@ public class DAOJPA<T> implements DAO<T> {
 
     @Override
     public boolean salvar(T obj) {
-//        EntityTransaction transacao = entityManager.getTransaction();
+        EntityTransaction transacao = entityManager.getTransaction();
 
         try {
-//            transacao.begin();
+            transacao.begin();
             entityManager.persist(obj);
-//            transacao.commit();
+            transacao.commit();
             return true;
         } catch (Exception ex) {
-//            if (transacao.isActive()) {
-//                transacao.rollback();
-//            }
+            if (transacao.isActive()) {
+                transacao.rollback();
+            }
             return false;
         }
 

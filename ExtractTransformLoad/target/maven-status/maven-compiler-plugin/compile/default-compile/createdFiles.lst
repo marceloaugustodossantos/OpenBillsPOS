@@ -1,8 +1,8 @@
 com/pos/extracttransformload/extractData/Principal.class
 com/pos/extracttransformload/entities/ReceitaComite.class
 com/pos/extracttransformload/service/ServiceDespesasCandidato.class
-com/pos/extracttransformload/webservice/server.class
 com/pos/extracttransformload/service/ServiceReceitaComite.class
+com/pos/extracttransformload/webServices/CandidatoService.class
 com/pos/extracttransformload/dao/DespesasComiteDao.class
 com/pos/extracttransformload/entities/DespesaComite.class
 com/pos/extracttransformload/service/ServiceDespesasComite.class
@@ -13,6 +13,6 @@ com/pos/extracttransformload/dao/ReceitasCandidatoDao.class
 com/pos/extracttransformload/service/ServiceReceitasCandidato.class
 com/pos/extracttransformload/dao/DespesasCandidatoDao.class
 com/pos/extracttransformload/entities/DespesaCandidato.class
+com/pos/extracttransformload/webServices/ComiteService.class
 com/pos/extracttransformload/dao/ReceitasComiteDao.class
-.netbeans_automatic_build
 com/pos/extracttransformload/dao/DAOJPA.class
