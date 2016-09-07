@@ -50,10 +50,11 @@ public class ExtractDataService {
                     new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Candidato/Despesa/DespesaCandidato.csv"), ';');
             String[] nextLine;
 
-//            while ((nextLine = reader.readNext()) != null) {
-////                ThreadPersistDespesaCandidato threadPersist = new ThreadPersistDespesaCandidato(nextLine);
-////                threadPersist.start();
-//            }
+            while ((nextLine = reader.readNext()) != null) {
+                System.out.println(nextLine.length);
+//                ThreadPersistDespesaCandidato threadPersist = new ThreadPersistDespesaCandidato(nextLine);
+//                threadPersist.start();
+            }
 
 //            reader = new CSVReader(
 //                    new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Candidato/Despesa/DespesaCandidato.csv"), ';');
@@ -101,19 +102,15 @@ public class ExtractDataService {
     
     public void extrairReceitasCandidato() {
         
-        try {
-            String[] nextLine;
-            
-            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Candidato/Receita/ReceitaCandidato.csv"), ';');
-//
-            while ((nextLine = reader.readNext()) != null) {
-                ReceitaCandidato recetaCandidato = new ReceitaCandidato(
-                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[5], nextLine[6], nextLine[8],
-                        nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], Double.parseDouble(nextLine[14].replace(',', '.')), nextLine[15], nextLine[16],
-                        nextLine[17], nextLine[18], nextLine[20], nextLine[21], nextLine[22], nextLine[23], nextLine[24],
-                        nextLine[25], nextLine[26],nextLine[27]);
-                daoReceitaCandidato.salvar(recetaCandidato);
-            }
+//        try {
+////            String[] nextLine;
+//            
+//            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Candidato/Receita/ReceitaCandidato.csv"), ';');
+//            reader.readNext();
+//            while ((nextLine = reader.readNext()) != null) {
+//                ThreadPersistDespesaCandidato threadPersist = new ThreadPersistDespesaCandidato(nextLine);
+//                threadPersist.start();
+//            }
 //
 //            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Candidato/Receita/ReceitaCandidato.csv"), ';');
 //
@@ -146,31 +143,26 @@ public class ExtractDataService {
 //                     daoReceitaCandidato.salvar(receitaCandidato);
 //            }
 //            
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+//        } catch (FileNotFoundException ex) {
+//            ex.printStackTrace();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
 
     }
-//    
-//    public void extrarirDespesasComite() {
-//        
-//        try {
-//            String[] nextLine;
-//            
-//            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Comitê/Despesa/DespesaComitê.CSV"), ';');
-//
-//            while ((nextLine = reader.readNext()) != null) {
-//                DespesaComite despesaComite = new DespesaComite(
-//                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[4], nextLine[5], nextLine[6],
-//                        Double.parseDouble(nextLine[7].replace(',', '.')), nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[14],
-//                        nextLine[15], nextLine[16], nextLine[17], nextLine[18], nextLine[19], nextLine[20], nextLine[21],
-//                        nextLine[22], nextLine[23],nextLine[24]);
-//              
-//                daoDespesasComite.salvar(despesaComite);
-//            }
-//
+    
+    public void extrarirDespesasComite() {
+        
+        try {
+            String[] nextLine;
+            
+            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Comitê/Despesa/DespesasComitê.CSV"), ';');
+
+            while ((nextLine = reader.readNext()) != null) {
+//                ThreadPersistDespesaCandidato thread = new ThreadPersistDespesaCandidato(nextLine);
+//                thread.start();
+            }
+
 //            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Comitê/Despesa/DespesaComitê.CSV"), ';');
 //
 //            while ((nextLine = reader.readNext()) != null) {
@@ -203,30 +195,27 @@ public class ExtractDataService {
 //
 //                daoDespesasComite.salvar(despesaComite);
 //            }        
-//        } catch (FileNotFoundException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//    }
-//    
-//    public void extrairReceitasComite() {
-//        
-//        try {
-//            String[] nextLine;
-//            
-//            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Comitê/Receita/ReceitaComitê.CSV"), ';');
-//
-//            while ((nextLine = reader.readNext()) != null) {
-//                ReceitaComite receitaComite = new ReceitaComite(
-//                        "2008", nextLine[0], nextLine[1], nextLine[2], nextLine[3], nextLine[4], nextLine[5], nextLine[6],
-//                        Double.parseDouble(nextLine[7].replace(',', '.')), nextLine[8], nextLine[9], nextLine[10], nextLine[11], nextLine[12], nextLine[13], nextLine[14],
-//                        nextLine[15], nextLine[16], nextLine[17], nextLine[18], nextLine[19],nextLine[20]);          
-//                   
-//                daoReceitasComite.salvar(receitaComite);
-//            }
-//
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+    
+    public void extrairReceitasComite() {
+        
+        try {
+            String[] nextLine;
+            
+            CSVReader reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2008/2008/Comitê/Receita/ReceitaComitê.CSV"), ';');
+
+            while ((nextLine = reader.readNext()) != null) {
+                System.out.println(nextLine.length);
+//                ThreadPersistDespesaCandidato t = new ThreadPersistDespesaCandidato(nextLine);
+//                t.start();
+            }
+
 //            reader = new CSVReader(new FileReader("/home/marcelo/Documentos/prestacao de contas/prestacao_contas_2006/2006/Comitê/Receita/ReceitaComitê.CSV"), ';');
 //
 //            while ((nextLine = reader.readNext()) != null) {
@@ -259,13 +248,13 @@ public class ExtractDataService {
 //
 //                daoReceitasComite.salvar(receitaComite);
 //            }
-//           
-//        } catch (FileNotFoundException ex) {
-//            ex.printStackTrace();
-//        } catch (IOException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//    }
+           
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+    }
 
 }

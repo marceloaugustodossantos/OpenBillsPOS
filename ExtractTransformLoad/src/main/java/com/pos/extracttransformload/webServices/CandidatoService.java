@@ -6,16 +6,17 @@
 package com.pos.extracttransformload.webServices;
 
 import com.pos.extracttransformload.dao.DAO;
-import com.pos.extracttransformload.dao.DAOJPA;
 import javax.jws.WebService;
 import com.pos.extracttransformload.entities.DespesaCandidato;
-import com.pos.extracttransformload.entities.DespesaComite;
 import com.pos.extracttransformload.entities.ReceitaCandidato;
-import com.pos.extracttransformload.entities.ReceitaComite;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
@@ -24,12 +25,13 @@ import javax.jws.WebParam;
  * @author marcelo
  */
 @WebService
-public class CandidatoService {
+@Stateless
+public class CandidatoService{
 
     @EJB
-    private DAOJPA<ReceitaCandidato> daoReceitaCandidato;
+    private DAO<ReceitaCandidato> daoReceitaCandidato;
     @EJB
-    private DAOJPA<DespesaCandidato> daoDespesaCandidato;
+    private DAO<DespesaCandidato> daoDespesaCandidato;
     
 
     @WebMethod(operationName = "obterCandidatosComMaioresReceitas")

@@ -5,13 +5,16 @@
  */
 package com.pos.extracttransformload.webServices;
 
-import com.pos.extracttransformload.dao.DAOJPA;
+import com.pos.extracttransformload.dao.DAO;
 import com.pos.extracttransformload.entities.DespesaComite;
 import com.pos.extracttransformload.entities.ReceitaComite;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
@@ -21,12 +24,13 @@ import javax.jws.WebService;
  * @author marcelo
  */
 @WebService
+@Stateless
 public class ComiteService {
 
     @EJB
-    private DAOJPA<DespesaComite> daoDespesaComite;
+    private DAO<DespesaComite> daoDespesaComite;
     @EJB
-    private DAOJPA<ReceitaComite> daoReceitaComite;
+    private DAO<ReceitaComite> daoReceitaComite;
     
     @WebMethod(operationName = "obterComiteComMaioresReceitas")
     public List<ReceitaComite> obterComiteComMaioresReceitas(

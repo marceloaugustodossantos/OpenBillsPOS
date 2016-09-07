@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://webServices.extracttransformload.pos.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://webServices.extracttransformload.pos.com/">
+
+<xs:element name="despesaCandidato" type="tns:despesaCandidato"/>
+
+<xs:element name="obterCandidatosComMaioresDespesas" type="tns:obterCandidatosComMaioresDespesas"/>
+
+<xs:element name="obterCandidatosComMaioresDespesasResponse" type="tns:obterCandidatosComMaioresDespesasResponse"/>
+
+<xs:element name="obterCandidatosComMaioresReceitas" type="tns:obterCandidatosComMaioresReceitas"/>
+
+<xs:element name="obterCandidatosComMaioresReceitasResponse" type="tns:obterCandidatosComMaioresReceitasResponse"/>
+
+<xs:element name="receitaCandidato" type="tns:receitaCandidato"/>
+
+<xs:complexType name="obterCandidatosComMaioresReceitas">
+<xs:sequence>
+<xs:element name="ano" type="xs:int" minOccurs="0"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="qtdeResul" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterCandidatosComMaioresReceitasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:receitaCandidato" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="receitaCandidato">
+<xs:sequence>
+<xs:element name="ano" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_cpf_adm" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_cpf_cnpj_doador" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_num_cnpj" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_num_cpf" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_cargo" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_esp_recurso" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_nr_titulo_eleitor" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="dt_receita" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nm_adm" type="xs:string" minOccurs="0"/>
+<xs:element name="nm_candidato" type="xs:string" minOccurs="0"/>
+<xs:element name="nm_doador" type="xs:string" minOccurs="0"/>
+<xs:element name="nm_ue1" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_candidato" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_partido" type="xs:string" minOccurs="0"/>
+<xs:element name="sequencial_candidato" type="xs:string" minOccurs="0"/>
+<xs:element name="sexo" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_partido" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue1" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue_superior" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue_superior1" type="xs:string" minOccurs="0"/>
+<xs:element name="situacaocadastral" type="xs:string" minOccurs="0"/>
+<xs:element name="vr_receita" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterCandidatosComMaioresDespesas">
+<xs:sequence>
+<xs:element name="ano" type="xs:int" minOccurs="0"/>
+<xs:element name="estado" type="xs:string" minOccurs="0"/>
+<xs:element name="qtdeResul" type="xs:int" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="obterCandidatosComMaioresDespesasResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:despesaCandidato" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="despesaCandidato">
+<xs:sequence>
+<xs:element name="ano" type="xs:string" minOccurs="0"/>
+<xs:element name="cd_cpf_cnpj_fornecedor" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_cargo" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_esp_recurso" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_nr_documento" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_tipo_documento" type="xs:string" minOccurs="0"/>
+<xs:element name="ds_titulo" type="xs:string" minOccurs="0"/>
+<xs:element name="dt_despesa" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:long"/>
+<xs:element name="nm_adm" type="xs:string" minOccurs="0"/>
+<xs:element name="nm_fornecedor" type="xs:string" minOccurs="0"/>
+<xs:element name="no_cand" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_cand" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_cnpj" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_cpf" type="xs:string" minOccurs="0"/>
+<xs:element name="nr_partido" type="xs:string" minOccurs="0"/>
+<xs:element name="sequencial_candidato" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_part" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue1" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue_superior" type="xs:string" minOccurs="0"/>
+<xs:element name="sg_ue_superior1" type="xs:string" minOccurs="0"/>
+<xs:element name="situacaocadastral" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

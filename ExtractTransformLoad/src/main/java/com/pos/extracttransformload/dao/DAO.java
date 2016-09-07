@@ -7,12 +7,14 @@ package com.pos.extracttransformload.dao;
 
 import java.util.List;
 import java.util.Map;
+import javax.ejb.Remote;
 
 /**
  *
  * @author Marcelo Augusto
  * @param <T>
  */
+@Remote
 public interface DAO<T> {
     
     public boolean salvar(T obj);
