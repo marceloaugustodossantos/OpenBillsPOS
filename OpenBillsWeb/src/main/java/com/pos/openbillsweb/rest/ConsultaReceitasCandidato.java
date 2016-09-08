@@ -7,7 +7,7 @@ package com.pos.openbillsweb.rest;
 
 import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
-import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
+import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
 import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
@@ -23,20 +23,20 @@ import org.json.JSONObject;
  *
  * @author marcelo
  */
-@Path("despesascandidato")
-public class ConsultaDespesasCandidato {
+@Path("receitascandidato")
+public class ConsultaReceitasCandidato {
 
     CandidatoService candidatoServicePort = new CandidatoServiceService().getCandidatoServicePort();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response obterCandidatosComMaioresDespesas() {
-        List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, "todos", 10);
+        List<ReceitaCandidato> receitaCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
         JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
+        for (ReceitaCandidato r : receitaCandidatos) {
             try {
                 JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
+                despCandidatoJson.put("candidato", r.getNmCandidato());
 //                candidatosJson.put("valorDespesa", c.get);
                 arrayDespesasJson.put(despCandidatoJson);
             } catch (JSONException ex) {
@@ -51,12 +51,12 @@ public class ConsultaDespesasCandidato {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obterCandidatosComMaioresDespesasPorEstado(@PathParam("estado") String estado) {
         
-        List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, estado, 10);
+        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
         JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
+        for (ReceitaCandidato r : receitasCandidatos) {
             try {
                 JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
+                despCandidatoJson.put("candidato", r.getNmCandidato());
 //                candidatosJson.put("valorDespesa", c.get);
                 arrayDespesasJson.put(despCandidatoJson);
             } catch (JSONException ex) {
@@ -71,13 +71,13 @@ public class ConsultaDespesasCandidato {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obterCandidatosComMaioresDespesasPorAno(@PathParam("ano") String ano) {
 
-        List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, "todos", Integer.parseInt(ano));
+        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
 
         JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
+        for (ReceitaCandidato r : receitasCandidatos) {
             try {
                 JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
+                despCandidatoJson.put("candidato", r.getNmCandidato());
 //                candidatosJson.put("valorDespesa", c.get);
                 arrayDespesasJson.put(despCandidatoJson);
             } catch (JSONException ex) {
@@ -93,13 +93,13 @@ public class ConsultaDespesasCandidato {
     public Response obterCandidatosComMaioresDespesasPorAnoeEstado(
             @PathParam("estado") String estado, @PathParam("ano") String ano) {
 
-        List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, estado, Integer.parseInt(ano));
+        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
 
         JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
+        for (ReceitaCandidato r : receitasCandidatos) {
             try {
                 JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
+                despCandidatoJson.put("candidato", r.getNmCandidato());
 //                candidatosJson.put("valorDespesa", c.get);
                 arrayDespesasJson.put(despCandidatoJson);
             } catch (JSONException ex) {
