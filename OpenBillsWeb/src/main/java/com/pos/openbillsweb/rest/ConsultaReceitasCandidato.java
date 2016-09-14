@@ -7,8 +7,12 @@ package com.pos.openbillsweb.rest;
 
 import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
+import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
 import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
@@ -27,86 +31,100 @@ import org.json.JSONObject;
 public class ConsultaReceitasCandidato {
 
     CandidatoService candidatoServicePort = new CandidatoServiceService().getCandidatoServicePort();
-
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response obterCandidatosComMaioresDespesas() {
-        List<ReceitaCandidato> receitaCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (ReceitaCandidato r : receitaCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", r.getNmCandidato());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return Response.ok(arrayDespesasJson).build();
-    }
-
-    @GET
-    @Path("{estado}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response obterCandidatosComMaioresDespesasPorEstado(@PathParam("estado") String estado) {
+    public Response teste() throws JSONException {
+        JsonArrayBuilder d1 = Json.createArrayBuilder();
+        d1.add("Marcelo augusto dos Santos");
+        d1.add(15000);
+        JsonArrayBuilder d2 = Json.createArrayBuilder();
+        d2.add("Augusto César dos Santos");
+        d2.add(10000);
+        JsonArrayBuilder d3 = Json.createArrayBuilder();
+        d3.add("Marcelo augusto");
+        d3.add(18000);
+        JsonArrayBuilder d4 = Json.createArrayBuilder();
+        d4.add("Augusto César Santos");
+        d4.add(13000);
         
-        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (ReceitaCandidato r : receitasCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", r.getNmCandidato());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return Response.ok(arrayDespesasJson).build();
+        JsonArrayBuilder receitas = Json.createArrayBuilder();
+        receitas.add(d1);
+        receitas.add(d2);
+        receitas.add(d3);
+        receitas.add(d4);
+        return Response.ok(receitas.build()).build();
     }
-
-    @GET
-    @Path("{ano}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response obterCandidatosComMaioresDespesasPorAno(@PathParam("ano") String ano) {
-
-        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
-
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (ReceitaCandidato r : receitasCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", r.getNmCandidato());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return Response.ok(arrayDespesasJson).build();
-    }
-
-    @GET
-    @Path("{ano, estado}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response obterCandidatosComMaioresDespesasPorAnoeEstado(
-            @PathParam("estado") String estado, @PathParam("ano") String ano) {
-
-        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
-
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (ReceitaCandidato r : receitasCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", r.getNmCandidato());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
-        }
-        return Response.ok(arrayDespesasJson).build();
-    }
-
+    
+//    @GET
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response obterCandidatosComMaioresReceitas() throws JSONException {
+//
+//        List<ReceitaCandidato> recCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
+//        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+//
+//        for (ReceitaCandidato r : recCandidatos) {
+//            JsonArrayBuilder arb = Json.createArrayBuilder();
+//            arb.add(r.getNmCandidato());
+//            arb.add(15000);
+//            despCandArray.add(arb);
+//        }
+//
+//        return Response.ok(despCandArray.build()).build();
+//    }
+//
+//    @GET
+//    @Path("{estado}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response obterCandidatosComMaioresReceitasPorEstado(@PathParam("estado") String estado) {
+//
+//        List<ReceitaCandidato> recCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
+//        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+//
+//        for (ReceitaCandidato r : recCandidatos) {
+//            JsonArrayBuilder arb = Json.createArrayBuilder();
+//            arb.add(r.getNmCandidato());
+//            arb.add(15000);
+//            despCandArray.add(arb);
+//        }
+//
+//        return Response.ok(despCandArray.build()).build();
+//    }
+//
+//    @GET
+//    @Path("{ano}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response obterCandidatosComMaioresReceitasPorAno(@PathParam("ano") String ano) {
+//
+//        List<ReceitaCandidato> recCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, "todos", 10);
+//        JsonArrayBuilder recCandArray = Json.createArrayBuilder();
+//
+//        for (ReceitaCandidato r : recCandidatos) {
+//            JsonArrayBuilder arb = Json.createArrayBuilder();
+//            arb.add(r.getNmCandidato());
+//            arb.add(15000);
+//            recCandArray.add(arb);
+//        }
+//
+//        return Response.ok(recCandArray.build()).build();
+//    }
+//
+//    @GET
+//    @Path("{ano, estado}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public Response obterCandidatosComMaioresReceitasPorAnoeEstado(
+//            @PathParam("estado") String estado, @PathParam("ano") String ano) {
+//
+//        List<ReceitaCandidato> receitasCandidatos = candidatoServicePort.obterCandidatosComMaioresReceitas(2008, estado, 10);
+//        JsonArrayBuilder despCand = Json.createArrayBuilder();
+//
+//        for (ReceitaCandidato r : receitasCandidatos) {
+//            JsonArrayBuilder arb = Json.createArrayBuilder();
+//            arb.add(r.getNmCandidato());
+//            arb.add(15000);
+//            despCand.add(arb);
+//        }
+//
+//        return Response.ok(despCand.build()).build();
+//    }
 }

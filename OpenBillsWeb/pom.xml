@@ -31,6 +31,11 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>eclipselink</artifactId>
+            <version>2.6.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -101,16 +106,16 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ExtractTransformLoad/ComiteServiceService.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/CandidatoServiceService/CandidatoService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.pos.openbillsweb.webservicesCli</packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://localhost:8080/ExtractTransformLoad/ComiteServiceService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/ComiteServiceService.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/CandidatoServiceService/CandidatoService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/CandidatoService.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-ComiteServiceService</id>
+                        <id>wsimport-generate-CandidatoService</id>
                         <phase>generate-sources</phase>
                     </execution>
                     <execution>
@@ -119,16 +124,16 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ExtractTransformLoad/CandidatoServiceService.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/ComiteServiceService/ComiteService.wsdl</wsdlFile>
                             </wsdlFiles>
                             <packageName>com.pos.openbillsweb.webservicesCli</packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>
-                            <wsdlLocation>http://localhost:8080/ExtractTransformLoad/CandidatoServiceService?wsdl</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/CandidatoServiceService.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/ComiteServiceService/ComiteService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/ComiteService.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-CandidatoServiceService</id>
+                        <id>wsimport-generate-ComiteService</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

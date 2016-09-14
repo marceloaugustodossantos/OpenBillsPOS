@@ -5,13 +5,8 @@
  */
 package com.pos.openbillsweb.controladores;
 
-import com.pos.openbillsweb.webservicesCli.CandidatoService;
-import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
 import java.io.Serializable;
-import java.util.List;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**

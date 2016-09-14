@@ -1,64 +1,67 @@
 
+$(function () {
 
-function buscarCandidatosComMaioresDespesas() {
-    $.get(
-            'OpenBillsWeb/despesascandidato',
-            {estado: 'Paraíba'},
-            function (response) {
-                desenharGrafico(response);
-            }
-    );
+    var graficoDespesasCandidato = grafico;
+    graficoDespesasCandidato.chart.renderTo = 'containerDespesasCandidato';
+    graficoDespesasCandidato.title.text = "Candidatos com maiores Despesas";
+    var chartDespCand = new Highcharts.Chart(graficoDespesasCandidato);
 
-}
+    var graficoReceitasCandidato = grafico;
+    graficoReceitasCandidato.chart.renderTo = "containerReceitasCandidato";
+    graficoReceitasCandidato.title.text = "Candidatos com maiores Receitas";
+    var chartRecCand = new Highcharts.Chart(graficoReceitasCandidato);
 
-function desenharGrafico(data) {
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'World\'s largest cities per 2014'
-        },
-        subtitle: {
-            text: 'Source: <a href="http://en.wikipedia.org/wiki/List_of_cities_proper_by_population">Wikipedia</a>'
-        },
-        xAxis: {
-            type: 'category',
-            labels: {
-                rotation: -45,
-                style: {
-                    fontSize: '13px',
-                    fontFamily: 'Verdana, sans-serif'
-                }
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)'
-            }
-        },
-        legend: {
-            enabled: false
-        },
-        tooltip: {
-            pointFormat: 'Population in 2008: <b>{point.y:.1f} millions</b>'
-        },
-        series: [{
-                name: 'Population',
-                data: data,
-                dataLabels: {
-                    enabled: true,
-                    rotation: -90,
-                    color: '#FFFFFF',
-                    align: 'right',
-                    format: '{point.y:.1f}', // one decimal
-                    y: 10, // 10 pixels down from the top
-                    style: {
-                        fontSize: '13px',
-                        fontFamily: 'Verdana, sans-serif'
+    var graficoDespesasComite = grafico;
+    graficoDespesasComite.chart.renderTo = "containerDespesasComite";
+    graficoReceitasCandidato.title.text = "Comitês com maiores despesas";
+    var chartDespComite = new Highcharts.Chart(graficoDespesasComite);
+
+    var graficoReceitasComite = grafico;
+    graficoReceitasComite.chart.renderTo = "containerReceitasComite";
+    graficoReceitasCandidato.title.text = "Comitês com maiores Receitas";
+    var chartRecComite = new Highcharts.Chart(graficoReceitasComite);
+
+
+    $("#button").click(
+            $.get(
+                    'webresources/receitascandidato',
+                    function (response) {
+                        var resp = JSON.stringify(response);
+                        var data = JSON.parse(resp);
+                        chartDespCand.series[0].setData(data);
                     }
-                }
-            }]
-    });
-}
+            )
+            );
+    $("#button").click(
+            $.get(
+                    'webresources/receitascandidato',
+                    function (response) {
+                        var resp = JSON.stringify(response);
+                        var data = JSON.parse(resp);
+                        chartRecCand.series[0].setData(data);
+                    }
+            )
+            );
+    $("#button").click(
+            $.get(
+                    'webresources/receitascandidato',
+                    function (response) {
+                        var resp = JSON.stringify(response);
+                        var data = JSON.parse(resp);
+                        chartDespComite.series[0].setData(data);
+                    }
+            )
+            );
+    $("#button").click(
+            $.get(
+                    'webresources/receitascandidato',
+                    function (response) {
+                        var resp = JSON.stringify(response);
+                        var data = JSON.parse(resp);
+                        chartRecComite.series[0].setData(data);
+                    }
+            )
+            );
+
+
+});

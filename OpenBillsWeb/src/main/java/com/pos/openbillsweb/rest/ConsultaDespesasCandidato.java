@@ -5,19 +5,19 @@
  */
 package com.pos.openbillsweb.rest;
 
+
 import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
 import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
 import java.util.List;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
@@ -32,18 +32,16 @@ public class ConsultaDespesasCandidato {
     @Produces(MediaType.APPLICATION_JSON)
     public Response obterCandidatosComMaioresDespesas() {
         List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, "todos", 10);
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+
+        for (DespesaCandidato r : despCandidatos) {
+            JsonArrayBuilder arb = Json.createArrayBuilder();
+            arb.add(r.getNoCand());
+            arb.add(15000);
+            despCandArray.add(arb);
         }
-        return Response.ok(arrayDespesasJson).build();
+
+        return Response.ok(despCandArray.build()).build();
     }
 
     @GET
@@ -52,18 +50,16 @@ public class ConsultaDespesasCandidato {
     public Response obterCandidatosComMaioresDespesasPorEstado(@PathParam("estado") String estado) {
         
         List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, estado, 10);
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+
+        for (DespesaCandidato r : despCandidatos) {
+            JsonArrayBuilder arb = Json.createArrayBuilder();
+            arb.add(r.getNoCand());
+            arb.add(15000);
+            despCandArray.add(arb);
         }
-        return Response.ok(arrayDespesasJson).build();
+
+        return Response.ok(despCandArray.build()).build();
     }
 
     @GET
@@ -72,19 +68,16 @@ public class ConsultaDespesasCandidato {
     public Response obterCandidatosComMaioresDespesasPorAno(@PathParam("ano") String ano) {
 
         List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, "todos", Integer.parseInt(ano));
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
 
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
+        for (DespesaCandidato r : despCandidatos) {
+            JsonArrayBuilder arb = Json.createArrayBuilder();
+            arb.add(r.getNoCand());
+            arb.add(15000);
+            despCandArray.add(arb);
         }
-        return Response.ok(arrayDespesasJson).build();
+
+        return Response.ok(despCandArray.build()).build();
     }
 
     @GET
@@ -94,19 +87,16 @@ public class ConsultaDespesasCandidato {
             @PathParam("estado") String estado, @PathParam("ano") String ano) {
 
         List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, estado, Integer.parseInt(ano));
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
 
-        JSONArray arrayDespesasJson = new JSONArray();
-        for (DespesaCandidato c : despCandidatos) {
-            try {
-                JSONObject despCandidatoJson = new JSONObject();
-                despCandidatoJson.put("candidato", c.getNoCand());
-//                candidatosJson.put("valorDespesa", c.get);
-                arrayDespesasJson.put(despCandidatoJson);
-            } catch (JSONException ex) {
-                ex.printStackTrace();
-            }
+        for (DespesaCandidato r : despCandidatos) {
+            JsonArrayBuilder arb = Json.createArrayBuilder();
+            arb.add(r.getNoCand());
+            arb.add(15000);
+            despCandArray.add(arb);
         }
-        return Response.ok(arrayDespesasJson).build();
+
+        return Response.ok(despCandArray.build()).build();
     }
 
 }
