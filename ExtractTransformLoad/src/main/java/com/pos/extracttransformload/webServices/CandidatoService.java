@@ -76,7 +76,7 @@ public class CandidatoService {
                 estado, estado, estado, estado, estado, estado, estado, estado, estado, estado));
 
         return receitas;
-    }
+    } 
 
     @WebMethod(operationName = "obterCandidatosComMaioresDespesas")
     public List<DespesaCandidato> obterCandidatosComMaioresDespesas(
