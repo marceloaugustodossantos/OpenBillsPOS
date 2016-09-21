@@ -6,9 +6,18 @@
 package com.pos.extracttransformload.webServices;
 
 import com.pos.extracttransformload.dao.DAO;
+import com.pos.extracttransformload.dao.DAOJPA;
 import javax.jws.WebService;
 import com.pos.extracttransformload.entities.DespesaCandidato;
+import com.pos.extracttransformload.entities.Despesacandidato2002;
+import com.pos.extracttransformload.entities.Despesacandidato2004;
+import com.pos.extracttransformload.entities.Despesacomite2002;
+import com.pos.extracttransformload.entities.Despesacomite2004;
 import com.pos.extracttransformload.entities.ReceitaCandidato;
+import com.pos.extracttransformload.entities.Receitacandidato2002;
+import com.pos.extracttransformload.entities.Receitacandidato2004;
+import com.pos.extracttransformload.entities.Receitacomite2002;
+import com.pos.extracttransformload.entities.Receitacomite2004;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,99 +26,92 @@ import java.util.Map;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import com.pos.extracttransformload.objectValues.DadosCandidato;
+import com.pos.extracttransformload.objectValues.ListCandidatos;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
  * @author marcelo
  */
 @WebService
-@Stateless
 public class CandidatoService {
 
-    @EJB
-    private DAO<ReceitaCandidato> daoReceitaCandidato;
-    @EJB
-    private DAO<DespesaCandidato> daoDespesaCandidato;
+    private DAO<Despesacandidato2002> daoDespesaCandidato2002 = new DAOJPA<>();
 
-    @WebMethod(operationName = "obterCandidatosComMaioresReceitas")
-    public List<ReceitaCandidato> obterCandidatosComMaioresReceitas(
-            @WebParam(name = "ano") Integer ano,
-            @WebParam(name = "estado") String estado,
-            @WebParam(name = "qtdeResul") Integer qtdeResult) {
-//        if (qtdeResult == null) {
-//            qtdeResult = 100;
-//        }
-//        if (ano != null && estado != null) {
-//            Map<String, Object> parametros = new HashMap<>();
-//            parametros.put("ano", ano);
-//            parametros.put("estado", estado);
-//            return daoReceitaCandidato.consultaLista(
-//                    "buscar.candidatoscommaioresreceitas.porestadoeano",
-//                    parametros,
-//                    qtdeResult);
-//        } else {
-//            if (ano != null) {
-//                Map<String, Object> parametros = new HashMap<>();
-//                parametros.put("ano", ano);
-//                return daoReceitaCandidato.consultaLista(
-//                        "buscar.candidatoscommaioresreceitas.porano",
-//                        parametros,
-//                        qtdeResult);
-//            }else{
-//                Map<String, Object> parametros = new HashMap<>();
-//                parametros.put("estado", estado);
-//                return daoReceitaCandidato.consultaLista(
-//                        "buscar.candidatoscommaioresreceitas.porestado",
-//                        parametros,
-//                        qtdeResult);
-//            }
-//        }
-        List<ReceitaCandidato> receitas = new ArrayList<>();
-        estado = "teste";
-        receitas.add(new ReceitaCandidato(estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, 0, estado, estado, 
-                estado, estado, estado, estado, estado, estado, estado, estado, estado, estado));
-        estado = "teste 2";
-        receitas.add(new ReceitaCandidato(estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, estado, 0, estado, estado, 
-                estado, estado, estado, estado, estado, estado, estado, estado, estado, estado));
+    private DAO<Receitacandidato2002> daoReceitaCandidato2002 = new DAOJPA<>();
 
-        return receitas;
-    } 
+    private DAO<Receitacandidato2004> daoReceitaCandidato2004 = new DAOJPA<>();
 
-    @WebMethod(operationName = "obterCandidatosComMaioresDespesas")
-    public List<DespesaCandidato> obterCandidatosComMaioresDespesas(
-            @WebParam(name = "ano") Integer ano,
-            @WebParam(name = "estado") String estado,
-            @WebParam(name = "qtdeResul") Integer qtdeResult) {
+    private DAO<Despesacandidato2004> daoDespesaCandidato2004 = new DAOJPA<>();
 
-        if (qtdeResult == null) {
-            qtdeResult = 100;
+    @WebMethod(operationName = "obterDadosDeCandidato")
+    public DadosCandidato obterDadosDeCandidato(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", nome);
+        List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.despesacandidato2002.pornome", parametros);
+        List<Receitacandidato2002> receitas2002 = daoReceitaCandidato2002.consultaLista("buscar.receitacandidato2002.pornome", parametros);
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.despesacandidato2004.pornome", parametros);
+        List<Receitacandidato2004> receitas2004 = daoReceitaCandidato2004.consultaLista("buscar.receitacandidato2004.pornome", parametros);
+
+        double valorTotalDespesas = 0;
+        double valorTotalReceitas = 0;
+        for (Receitacandidato2004 receitacandidato2004 : receitas2004) {
+            valorTotalReceitas += receitacandidato2004.getVr_receita();
         }
-        if (ano != null && estado != null) {
-            Map<String, Object> parametros = new HashMap<>();
-            parametros.put("ano", ano);
-            parametros.put("estado", estado);
-            return daoDespesaCandidato.consultaLista(
-                    "buscar.candidatoscommaioresdespesas.porestadoeano",
-                    parametros,
-                    qtdeResult);
-        } else if (ano != null) {
-            Map<String, Object> parametros = new HashMap<>();
-            parametros.put("ano", ano);
-            return daoDespesaCandidato.consultaLista(
-                    "buscar.candidatoscommaioresdespesas.porano",
-                    parametros,
-                    qtdeResult);
-        } else {
-            Map<String, Object> parametros = new HashMap<>();
-            parametros.put("estado", estado);
-            return daoDespesaCandidato.consultaLista(
-                    "buscar.candidatoscommaioresdespesas.porestado",
-                    parametros,
-                    qtdeResult);
+        for (Despesacandidato2004 d : despesas2004) {
+            valorTotalDespesas += d.getVr_despesa();
         }
+        for (Receitacandidato2002 r : receitas2002) {
+            valorTotalReceitas += r.getVr_receita();
+        }
+        for (Despesacandidato2002 d : despesas2002) {
+            valorTotalDespesas += d.getVr_despesa();
+        }
+        Receitacandidato2004 r = receitas2004.get(0);
+        DadosCandidato candidato = new DadosCandidato(r.getNo_cand(), r.getDs_cargo(), r.getNr_cand(),
+                r.getNo_ue(), r.getSg_ue(), r.getSg_part(), valorTotalReceitas, valorTotalDespesas, "2004");
+        return candidato;
     }
+
+//    @WebMethod(operationName = "obterDadosDeCandidato")
+//    public List<DadosCandidato> listarCandidatosPorNome(@WebParam(name = "nome") String nome) {
+//
+//        Map<String, Object> parametros = new HashMap<>();
+//        parametros.put("nome", nome);
+//        List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.despesacandidato2002.pornome", parametros);
+//        List<Receitacandidato2002> receitas2002 = daoReceitaCandidato2002.consultaLista("buscar.receitacandidato2002.pornome", parametros);
+//        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.despesacandidato2004.pornome", parametros);
+//        List<Receitacandidato2004> receitas2004 = daoReceitaCandidato2004.consultaLista("buscar.receitacandidato2004.pornome", parametros);
+//
+//        List<DadosCandidato> candidatos = new ArrayList<>();
+//
+//        for (Receitacandidato2004 r : receitas2004) {
+//            DadosCandidato candidato = new DadosCandidato(r.getNo_cand(), r.getDs_cargo(), r.getNr_cand(),
+//                    r.getNo_ue(), r.getSg_ue(), r.getSg_part(), 0, 0, "2004");
+//            candidatos.add(candidato);
+//        }
+//        for (Despesacandidato2004 d : despesas2004) {
+//            DadosCandidato candidato = new DadosCandidato(d.getNo_cand(), d.getDs_cargo(), d.getNr_cand(),
+//                    d.getNo_ue(), d.getSg_ue(), d.getSg_part(), 0, 0, "2004");
+//            candidatos.add(candidato);
+//        }
+//        for (Receitacandidato2002 r : receitas2002) {
+//            DadosCandidato candidato = new DadosCandidato(r.getNo_cand(), r.getDs_cargo(), r.getNr_cand(),
+//                    r.getSg_uf(), r.getSg_uf(), r.getSg_part(), 0, 0, "2002");
+//            candidatos.add(candidato);
+//        }
+//        for (Despesacandidato2002 d : despesas2002) {
+//            DadosCandidato candidato = new DadosCandidato(d.getNo_cand(), d.getDs_cargo(), d.getNr_cand(),
+//                    d.getSg_uf(), d.getSg_uf(), d.getSg_part(), 0, 0, "2002");
+//            candidatos.add(candidato);
+//        }
+//        return candidatos;
+//    }
 
 }

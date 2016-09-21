@@ -7,6 +7,7 @@ package com.pos.extracttransformload.dao;
 
 import java.util.List;
 import java.util.Map;
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
 /**
@@ -14,7 +15,7 @@ import javax.ejb.Remote;
  * @author Marcelo Augusto
  * @param <T>
  */
-@Remote
+//@Remote
 public interface DAO<T> {
     
     public boolean salvar(T obj);
@@ -24,6 +25,8 @@ public interface DAO<T> {
     public boolean excluir(T obj);
     
     public T buscar(Object chave, Class<T> entidade);
+    
+    public List<T> consultaLista(String consulta,Map<String,Object> parametros);
     
     public List<T> consultaLista(String consulta,Map<String,Object> parametros, int qtdeResults);
     

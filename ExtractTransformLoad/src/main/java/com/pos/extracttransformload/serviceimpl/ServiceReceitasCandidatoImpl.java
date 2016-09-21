@@ -15,30 +15,30 @@ import javax.ejb.Stateless;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class ServiceReceitasCandidatoImpl {
 
-    @EJB
-    private ReceitasCandidatoDao receitasCandidatoDao;
-
-    public boolean addReceitaCandidato(ReceitaCandidato rc) {
-        return receitasCandidatoDao.addReceitaCandidato(rc);
-    }
-
-    public boolean removeReceitaCandidato(ReceitaCandidato rc) {
-        return receitasCandidatoDao.removeReceitaCandidato(rc);
-    }
-
-    public boolean refreshReceitaCandidato(ReceitaCandidato rc) {
-        return receitasCandidatoDao.refreshReceitaCandidato(rc);
-    }
-
-    public ReceitaCandidato searchReceitaCandidato(Class<ReceitaCandidato> entidade, Object key) {
-        return receitasCandidatoDao.searchReceitaCandidato(entidade, key);
-
-    }
-
-    public List<ReceitaCandidato> listarReceitaCandidato() {
-        return receitasCandidatoDao.listarReceitaCandidato();
-    }
+//    @EJB
+//    private ReceitasCandidatoDao receitasCandidatoDao;
+//
+//    public boolean addReceitaCandidato(ReceitaCandidato rc) {
+//        return receitasCandidatoDao.addReceitaCandidato(rc);
+//    }
+//
+//    public boolean removeReceitaCandidato(ReceitaCandidato rc) {
+//        return receitasCandidatoDao.removeReceitaCandidato(rc);
+//    }
+//
+//    public boolean refreshReceitaCandidato(ReceitaCandidato rc) {
+//        return receitasCandidatoDao.refreshReceitaCandidato(rc);
+//    }
+//
+//    public ReceitaCandidato searchReceitaCandidato(Class<ReceitaCandidato> entidade, Object key) {
+//        return receitasCandidatoDao.searchReceitaCandidato(entidade, key);
+//
+//    }
+//
+//    public List<ReceitaCandidato> listarReceitaCandidato() {
+//        return receitasCandidatoDao.listarReceitaCandidato();
+//    }
 }

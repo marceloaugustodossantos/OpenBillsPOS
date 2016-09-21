@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/CandidatoServiceService/CandidatoService?wsdl" uri="wsdl/localhost_8080/CandidatoServiceService/CandidatoService.wsdl"/>
-    <system systemId="http://localhost:8080/CandidatoServiceService/CandidatoService?xsd=1" uri="wsdl/localhost_8080/CandidatoServiceService/CandidatoService.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/ComiteServiceService/ComiteService?wsdl" uri="wsdl/localhost_8080/ComiteServiceService/ComiteService.wsdl"/>
-    <system systemId="http://localhost:8080/ComiteServiceService/ComiteService?xsd=1" uri="wsdl/localhost_8080/ComiteServiceService/ComiteService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ExtractTransformLoad/CandidatoServiceService?wsdl" uri="wsdl/localhost_8080/ExtractTransformLoad/CandidatoServiceService.wsdl"/>
+    <system systemId="http://localhost:8080/ExtractTransformLoad/CandidatoServiceService?xsd=1" uri="wsdl/localhost_8080/ExtractTransformLoad/CandidatoServiceService.xsd_1.xsd"/>
 </catalog>

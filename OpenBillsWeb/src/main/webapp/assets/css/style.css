@@ -7,15 +7,25 @@ and open the template in the editor.
     Created on : 05/09/2016, 11:18:14
     Author     : marcelo
 */
+body{
+    background-color: #e9e9e9;
+}
 
 .linkWhite{
     color: white;
 }
 
+.fonteMedia{
+    font-size: 20px;
+}
+.fonteGrande{
+    font-size: 50px;
+}
+
 #jumbotron{
     padding-top: 0px;
     padding-bottom: 10px;
-    background-color: #5fa3de;
+    background-color: #058b11;
     color: white;
 }
 #jumbotron small{
@@ -23,4 +33,17 @@ and open the template in the editor.
 }
 #jumbotron p{
     font-size: 24px;
+}
+
+.glyphiconGrande{
+    font-size: 40px;
+} 
+
+.separador{
+    padding-top: 15px;
+    padding-bottom: 15px;  
+}
+
+#carousel-example-generic{
+    margin-bottom: 20px;
 }

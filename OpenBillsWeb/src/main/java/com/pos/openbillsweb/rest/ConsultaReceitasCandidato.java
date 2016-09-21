@@ -5,23 +5,14 @@
  */
 package com.pos.openbillsweb.rest;
 
-import com.pos.openbillsweb.webservicesCli.CandidatoService;
-import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
-import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
-import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
-import java.util.List;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  *
@@ -30,8 +21,8 @@ import org.json.JSONObject;
 @Path("receitascandidato")
 public class ConsultaReceitasCandidato {
 
-    CandidatoService candidatoServicePort = new CandidatoServiceService().getCandidatoServicePort();
-    
+//    CandidatoService candidatoServicePort = new CandidatoServiceService().getCandidatoServicePort();
+   
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response teste() throws JSONException {
@@ -53,7 +44,7 @@ public class ConsultaReceitasCandidato {
         receitas.add(d2);
         receitas.add(d3);
         receitas.add(d4);
-        return Response.ok(receitas.build()).build();
+        return Response.ok(receitas.build()).build(); 
     }
     
 //    @GET

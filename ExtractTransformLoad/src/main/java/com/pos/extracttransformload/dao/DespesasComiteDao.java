@@ -16,37 +16,37 @@ import javax.persistence.Query;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class DespesasComiteDao {
 
-    @PersistenceContext
-    EntityManager em;
-
-    public boolean addDespesaComite(DespesaComite dc) {
-        em.persist(dc);
-        return true;
-    }
-
-    public boolean removeDespesaComite(DespesaComite dc) {
-        em.remove(em.merge(dc));
-        return true;
-    }
-
-    public boolean refreshDespesaComite(DespesaComite dc) {
-        em.merge(dc);
-        return true;
-    }
-
-    public DespesaComite searchDespesaComite(Class<DespesaComite> entidade, Object key) {
-        return em.find(entidade, key);
-    }
-
-    public List<DespesaComite> listarDespesaComite() {
-        Query query = em.createQuery("SELECT dc FROM DespesaComite dc ORDER BY dc.dsTitulo", DespesaComite.class);
-        List<DespesaComite> despesaComites = query.getResultList();
-        if (despesaComites.size() > 0) {
-            return despesaComites;
-        }
-        return null;
-    }
+//    @PersistenceContext
+//    EntityManager em;
+//
+//    public boolean addDespesaComite(DespesaComite dc) {
+//        em.persist(dc);
+//        return true;
+//    }
+//
+//    public boolean removeDespesaComite(DespesaComite dc) {
+//        em.remove(em.merge(dc));
+//        return true;
+//    }
+//
+//    public boolean refreshDespesaComite(DespesaComite dc) {
+//        em.merge(dc);
+//        return true;
+//    }
+//
+//    public DespesaComite searchDespesaComite(Class<DespesaComite> entidade, Object key) {
+//        return em.find(entidade, key);
+//    }
+//
+//    public List<DespesaComite> listarDespesaComite() {
+//        Query query = em.createQuery("SELECT dc FROM DespesaComite dc ORDER BY dc.dsTitulo", DespesaComite.class);
+//        List<DespesaComite> despesaComites = query.getResultList();
+//        if (despesaComites.size() > 0) {
+//            return despesaComites;
+//        }
+//        return null;
+//    }
 }

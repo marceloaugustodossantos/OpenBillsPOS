@@ -15,29 +15,29 @@ import javax.ejb.Stateless;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class ServiceReceitaComiteImpl {
 
-    @EJB
-    private ReceitasComiteDao receitasComiteDao;
-
-    public boolean addReceitaComite(ReceitaComite rc) {
-        return receitasComiteDao.addReceitaComite(rc);
-    }
-
-    public boolean removeReceitaComite(ReceitaComite rc) {
-        return receitasComiteDao.removeReceitaComite(rc);
-    }
-
-    public boolean refreshReceitaComite(ReceitaComite rc) {
-        return receitasComiteDao.refreshReceitaComite(rc);
-    }
-
-    public ReceitaComite searchReceitaComite(Class<ReceitaComite> entidade, Object key) {
-        return receitasComiteDao.searchReceitaComite(entidade, key);
-    }
-
-    public List<ReceitaComite> listarReceitaComite() {
-        return receitasComiteDao.listarReceitaComite();
-    }
+//    @EJB
+//    private ReceitasComiteDao receitasComiteDao;
+//
+//    public boolean addReceitaComite(ReceitaComite rc) {
+//        return receitasComiteDao.addReceitaComite(rc);
+//    }
+//
+//    public boolean removeReceitaComite(ReceitaComite rc) {
+//        return receitasComiteDao.removeReceitaComite(rc);
+//    }
+//
+//    public boolean refreshReceitaComite(ReceitaComite rc) {
+//        return receitasComiteDao.refreshReceitaComite(rc);
+//    }
+//
+//    public ReceitaComite searchReceitaComite(Class<ReceitaComite> entidade, Object key) {
+//        return receitasComiteDao.searchReceitaComite(entidade, key);
+//    }
+//
+//    public List<ReceitaComite> listarReceitaComite() {
+//        return receitasComiteDao.listarReceitaComite();
+//    }
 }
