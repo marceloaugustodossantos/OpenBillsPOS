@@ -16,37 +16,37 @@ import javax.persistence.Query;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class ReceitasCandidatoDao {
-
-    @PersistenceContext
-    EntityManager em;
-
-    public boolean addReceitaCandidato(ReceitaCandidato rc) {
-        em.persist(rc);
-        return true;
-    }
-
-    public boolean removeReceitaCandidato(ReceitaCandidato rc) {
-        em.remove(em.merge(rc));
-        return true;
-    }
-
-    public boolean refreshReceitaCandidato(ReceitaCandidato rc) {
-        em.merge(rc);
-        return true;
-    }
-
-    public ReceitaCandidato searchReceitaCandidato(Class<ReceitaCandidato> entidade, Object key) {
-        return em.find(entidade, key);
-    }
-
-    public List<ReceitaCandidato> listarReceitaCandidato() {
-        Query query = em.createQuery("SELECT rc FROM ReceitaCandidato rc ORDER BY rc.cdUfDoador", ReceitaCandidato.class);
-        List<ReceitaCandidato> receitaCandidatos = query.getResultList();
-        if (receitaCandidatos.size() > 0) {
-            return receitaCandidatos;
-        }
-        return null;
-    }
+//
+//    @PersistenceContext
+//    EntityManager em;
+//
+//    public boolean addReceitaCandidato(ReceitaCandidato rc) {
+//        em.persist(rc);
+//        return true;
+//    }
+//
+//    public boolean removeReceitaCandidato(ReceitaCandidato rc) {
+//        em.remove(em.merge(rc));
+//        return true;
+//    }
+//
+//    public boolean refreshReceitaCandidato(ReceitaCandidato rc) {
+//        em.merge(rc);
+//        return true;
+//    }
+//
+//    public ReceitaCandidato searchReceitaCandidato(Class<ReceitaCandidato> entidade, Object key) {
+//        return em.find(entidade, key);
+//    }
+//
+//    public List<ReceitaCandidato> listarReceitaCandidato() {
+//        Query query = em.createQuery("SELECT rc FROM ReceitaCandidato rc ORDER BY rc.cdUfDoador", ReceitaCandidato.class);
+//        List<ReceitaCandidato> receitaCandidatos = query.getResultList();
+//        if (receitaCandidatos.size() > 0) {
+//            return receitaCandidatos;
+//        }
+//        return null;
+//    }
 }

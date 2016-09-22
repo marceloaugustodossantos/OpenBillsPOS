@@ -14,28 +14,28 @@ import javax.ejb.Stateless;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class ServiceDespesasComiteImpl {
 
-    private DespesasComiteDao despesasComiteDao;
-
-    public boolean addDespesasComite(DespesaComite dc) {
-        return despesasComiteDao.addDespesaComite(dc);
-    }
-
-    public boolean removeDespesaComite(DespesaComite dc) {
-        return despesasComiteDao.removeDespesaComite(dc);
-    }
-
-    public boolean refreshDespesaComite(DespesaComite dc) {
-        return despesasComiteDao.refreshDespesaComite(dc);
-    }
-
-    public DespesaComite searchDespesaComite(Class<DespesaComite> entidade, Object key) {
-        return despesasComiteDao.searchDespesaComite(entidade, key);
-    }
-
-    public List<DespesaComite> listarDespesaComite() {
-        return despesasComiteDao.listarDespesaComite();
-    }
+//    private DespesasComiteDao despesasComiteDao;
+//
+//    public boolean addDespesasComite(DespesaComite dc) {
+//        return despesasComiteDao.addDespesaComite(dc);
+//    }
+//
+//    public boolean removeDespesaComite(DespesaComite dc) {
+//        return despesasComiteDao.removeDespesaComite(dc);
+//    }
+//
+//    public boolean refreshDespesaComite(DespesaComite dc) {
+//        return despesasComiteDao.refreshDespesaComite(dc);
+//    }
+//
+//    public DespesaComite searchDespesaComite(Class<DespesaComite> entidade, Object key) {
+//        return despesasComiteDao.searchDespesaComite(entidade, key);
+//    }
+//
+//    public List<DespesaComite> listarDespesaComite() {
+//        return despesasComiteDao.listarDespesaComite();
+//    }
 }

@@ -15,29 +15,29 @@ import javax.ejb.Stateless;
  *
  * @author kaiqu
  */
-@Stateless
+//@Stateless
 public class ServiceDespesasCandidatoImpl {
 
-    @EJB
-    private DespesasCandidatoDao despesasCandidatoDao;
-
-    public boolean addDespesaCandidato(DespesaCandidato dc) {
-        return despesasCandidatoDao.addDespesaCandidato(dc);
-    }
-
-    public boolean removeDespesaCandidato(DespesaCandidato dc) {
-        return despesasCandidatoDao.removeDespesaCandidato(dc);
-    }
-
-    public boolean refreshDespesaCandidato(DespesaCandidato dc) {
-        return despesasCandidatoDao.refreshDespesaCandidato(dc);
-    }
-
-    public DespesaCandidato searchDespesaCandidato(Class<DespesaCandidato> entidade, Object key) {
-        return despesasCandidatoDao.searchDespesaCandidato(entidade, key);
-    }
-
-    public List<DespesaCandidato> listarDespesaCandidato() {
-        return despesasCandidatoDao.listarDespesaCandidato();
-    }
+//    @EJB
+//    private DespesasCandidatoDao despesasCandidatoDao;
+//
+//    public boolean addDespesaCandidato(DespesaCandidato dc) {
+//        return despesasCandidatoDao.addDespesaCandidato(dc);
+//    }
+//
+//    public boolean removeDespesaCandidato(DespesaCandidato dc) {
+//        return despesasCandidatoDao.removeDespesaCandidato(dc);
+//    }
+//
+//    public boolean refreshDespesaCandidato(DespesaCandidato dc) {
+//        return despesasCandidatoDao.refreshDespesaCandidato(dc);
+//    }
+//
+//    public DespesaCandidato searchDespesaCandidato(Class<DespesaCandidato> entidade, Object key) {
+//        return despesasCandidatoDao.searchDespesaCandidato(entidade, key);
+//    }
+//
+//    public List<DespesaCandidato> listarDespesaCandidato() {
+//        return despesasCandidatoDao.listarDespesaCandidato();
+//    }
 }
