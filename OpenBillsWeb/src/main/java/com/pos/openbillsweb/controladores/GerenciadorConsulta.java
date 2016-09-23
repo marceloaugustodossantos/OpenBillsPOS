@@ -38,6 +38,10 @@ public class GerenciadorConsulta implements Serializable{
         return "candidatos.xhtml";
     }
     
+    public String buscarDoador(){
+        return "doadores.xhtml";
+    }
+    
     
     public GerenciadorConsulta() {
         candidatoService = new CandidatoServiceService().getCandidatoServicePort();

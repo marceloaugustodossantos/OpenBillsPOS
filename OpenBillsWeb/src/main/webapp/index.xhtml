@@ -70,41 +70,54 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-
-            <div class="col-md-3">
-                <h:form>
-                    <h:commandLink action="#{gerenciadorConsulta.buscarCandidato()}">
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <h:form>
+                        <h:commandLink action="#{gerenciadorConsulta.buscarCandidato()}">
+                            <div class="thumbnail heightTumbnail">
+                                <img src="assets/images/search-candidato.png" width="170"></img>
+                                <div class="caption">
+                                    <h4>Consultar informações de candidatos</h4>
+                                </div>
+                            </div>
+                        </h:commandLink>
+                    </h:form>
+                </div>
+                <div class="col-md-3">
+                    <h:form>
+                        <h:commandLink action="#{gerenciadorConsulta.buscarDoador()}">
+                            <div class="thumbnail heightTumbnail">
+                                <img src="assets/images/search-fornecedor.png" width="170"></img>
+                                <div class="caption">
+                                    <h4>Consultar doadores e fornecedores e suas contribuições</h4>
+                                </div>
+                            </div>
+                        </h:commandLink>
+                    </h:form>
+                </div>
+                <div class="col-md-3">
+                    <a href="#">
                         <div class="thumbnail heightTumbnail">
-                            <img src="assets/images/search-3-512.png" width="150"></img>
+                            <img src="assets/images/bar-chart-5-512.png" width="170"></img>
                             <div class="caption">
-                                <h4>Consultar informações de candidatos</h4>
+                                <h4>Ranking dos candidatos que mais gastaram em sua cidade</h4>
                             </div>
                         </div>
-                    </h:commandLink>
-                </h:form>
-            </div>
-            <div class="col-md-3">
-                <a href="candidatos.xhtml">
-                    <div class="thumbnail heightTumbnail">
-                        <img src="assets/images/bar-chart-5-512.png" width="150"></img>
-                        <div class="caption">
-                            <h4>Ranking dos candidatos que mais gastaram em sua cidade</h4>
+                    </a>
+                </div>
+                <div class="col-md-3" >
+                    <a href="#">
+                        <div class="thumbnail heightTumbnail" >
+                            <img src="assets/images/info-2-512.png" width="170"></img>
+                            <div class="caption">
+                                <h4>Buscar informações de partidos</h4>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-3" >
-                <a href="candidatos.xhtml">
-                    <div class="thumbnail heightTumbnail" >
-                        <img src="assets/images/info-2-512.png" width="150"></img>
-                        <div class="caption">
-                            <h4>Buscar informações de partidos</h4>
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
 
-
+            </div>
 
 
             <!--            <div class="row">
