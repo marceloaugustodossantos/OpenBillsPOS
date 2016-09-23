@@ -97,14 +97,16 @@
                     </h:form>
                 </div>
                 <div class="col-md-3">
-                    <a href="#">
-                        <div class="thumbnail heightTumbnail">
+                    <h:form>
+                        <h:commandLink action="#{gerenciadorConsulta.buscarCandidatosQueMaisGastaram()}">
+                            <div class="thumbnail heightTumbnail">
                             <img src="assets/images/bar-chart-5-512.png" width="170"></img>
                             <div class="caption">
                                 <h4>Ranking dos candidatos que mais gastaram em sua cidade</h4>
                             </div>
                         </div>
-                    </a>
+                        </h:commandLink>
+                    </h:form>                    
                 </div>
                 <div class="col-md-3" >
                     <a href="#">

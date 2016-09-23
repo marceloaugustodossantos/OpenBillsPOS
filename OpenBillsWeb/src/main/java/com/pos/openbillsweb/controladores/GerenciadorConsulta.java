@@ -10,6 +10,7 @@ import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
 import com.pos.openbillsweb.webservicesCli.DadosCompletosCandidato;
 import com.pos.openbillsweb.webservicesCli.DadosResumidosCandidato;
+import com.pos.openbillsweb.webservicesCli.Municipios;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,35 +25,46 @@ import javax.inject.Named;
  */
 @Named("gerenciadorConsulta")
 @SessionScoped
-public class GerenciadorConsulta implements Serializable{
-    
+public class GerenciadorConsulta implements Serializable {
+
     CandidatoService candidatoService;
-    
+
     String nomeBusca = "";
     String anoBusca = "";
+    String cidadeBusca = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
-        
-    
-    public String buscarCandidato(){
+    List<Municipios> listaMunicipios = new ArrayList<>();
+
+    public String buscarCandidato() {
         return "candidatos.xhtml";
     }
-    
-    public String buscarDoador(){
+
+    public String buscarDoador() {
         return "doadores.xhtml";
     }
-    
-    
+
+    public String buscarCandidatosQueMaisGastaram() {
+        return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
+    }
+
     public GerenciadorConsulta() {
         candidatoService = new CandidatoServiceService().getCandidatoServicePort();
     }
-        
-    public String listarCandidatosPorNome(){
+
+    public String listarCandidatosPorNome() {
         this.dadosCandidatos = candidatoService.listarCandidatosPorNome(nomeBusca);
         return "candidatos.xhtml";
     }
-    
-    public String visualizarCandidato(String nome, String ano){
+
+    public String listarMunicipiosPorNome() {
+        System.out.println("Entrou No metodo!!!");
+        this.listaMunicipios = candidatoService.listarMunicipiosPorNome(cidadeBusca);
+        System.out.println("Pesquisou!!!");
+        return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
+    }
+
+    public String visualizarCandidato(String nome, String ano) {
         try {
             dadosCandidato = candidatoService.obterDadosDeCandidato(nome, ano);
         } catch (CandidatoNaoEncontradoExcetpion_Exception ex) {
@@ -60,7 +72,12 @@ public class GerenciadorConsulta implements Serializable{
         }
         return "candidato.xhtml";
     }
-        
+
+    public String visualizarMunicipio(String nomeMunicipio) {
+        System.out.println("Entrou no Metodo");
+        return "informacoes_de_cidade_selecionada.xhtml";
+    }
+
     private void alertStatus(String m) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, m, "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -97,6 +114,21 @@ public class GerenciadorConsulta implements Serializable{
     public void setDadosCandidatos(List<DadosResumidosCandidato> dadosCandidatos) {
         this.dadosCandidatos = dadosCandidatos;
     }
-    
-    
+
+    public String getCidadeBusca() {
+        return cidadeBusca;
+    }
+
+    public void setCidadeBusca(String cidadeBusca) {
+        this.cidadeBusca = cidadeBusca;
+    }
+
+    public List<Municipios> getListaMunicipios() {
+        return listaMunicipios;
+    }
+
+    public void setListaMunicipios(List<Municipios> listaMunicipios) {
+        this.listaMunicipios = listaMunicipios;
+    }
+
 }

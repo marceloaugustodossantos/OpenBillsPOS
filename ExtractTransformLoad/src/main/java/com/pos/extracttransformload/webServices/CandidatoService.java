@@ -23,6 +23,10 @@ import com.pos.extracttransformload.objectValues.DadosCompletosCandidato;
 import com.pos.extracttransformload.objectValues.DadosResumidosCandidato;
 import com.pos.extracttransformload.objectValues.DespesaCandidato;
 import com.pos.extracttransformload.objectValues.ReceitaCandidato;
+import com.pos.extracttransformload.objectValues.Municipios;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.jws.WebResult;
 
 /**
@@ -92,7 +96,9 @@ public class CandidatoService {
 
                 Despesacandidato2004 d = despesas2004.get(0);
                 candidato = new DadosCompletosCandidato(d.getNo_cand(), d.getDs_cargo(), d.getNr_cand(), d.getNo_ue(), d.getSg_ue(), d.getSg_part(), "2004", despesas, receitas);
-            }else throw new CandidatoNaoEncontradoExcetpion("Nenhum candidato encontrado com o nome de: "+nome+ " para o ano especificado");
+            } else {
+                throw new CandidatoNaoEncontradoExcetpion("Nenhum candidato encontrado com o nome de: " + nome + " para o ano especificado");
+            }
         }
         return candidato;
     }
@@ -126,6 +132,25 @@ public class CandidatoService {
         }
 
         return candidatos;
+    }
+
+    @WebMethod(operationName = "listarMunicipiosPorNome")
+    @WebResult(name = "municipios")
+    public Set<Municipios> listarMunicipiosPorNome(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.municipios.pornome", parametros);
+
+        Set<Municipios> municipios = new HashSet<>();
+
+        for (Despesacandidato2004 d : despesas2004) {
+
+            Municipios m = new Municipios(d.getNo_ue());
+            municipios.add(m);
+        }
+
+        return municipios;
     }
 
 }
