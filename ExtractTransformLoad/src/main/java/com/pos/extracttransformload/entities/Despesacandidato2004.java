@@ -6,6 +6,7 @@
 package com.pos.extracttransformload.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -251,4 +252,27 @@ public class Despesacandidato2004 implements Serializable {
         this.rv_meaning = rv_meaning;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.no_cand);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Despesacandidato2004 other = (Despesacandidato2004) obj;
+        if (!Objects.equals(this.no_cand, other.no_cand)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

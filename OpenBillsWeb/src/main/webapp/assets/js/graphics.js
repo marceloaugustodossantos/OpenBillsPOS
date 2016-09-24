@@ -1,6 +1,6 @@
 
 $(function () {
-
+    
 //    var graficoDespesasCandidato = grafico;
 //    graficoDespesasCandidato.chart.renderTo = 'container';
 //    graficoDespesasCandidato.title.text = "Candidatos com maiores Despesas";

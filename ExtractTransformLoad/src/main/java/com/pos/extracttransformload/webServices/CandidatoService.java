@@ -13,6 +13,7 @@ import com.pos.extracttransformload.entities.Despesacandidato2004;
 import com.pos.extracttransformload.entities.Receitacandidato2002;
 import com.pos.extracttransformload.entities.Receitacandidato2004;
 import com.pos.extracttransformload.exceptions.CandidatoNaoEncontradoExcetpion;
+import com.pos.extracttransformload.objectValues.DadosCandidatosPorMunicipio;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,9 +25,9 @@ import com.pos.extracttransformload.objectValues.DadosResumidosCandidato;
 import com.pos.extracttransformload.objectValues.DespesaCandidato;
 import com.pos.extracttransformload.objectValues.ReceitaCandidato;
 import com.pos.extracttransformload.objectValues.Municipios;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 import javax.jws.WebResult;
 
 /**
@@ -145,12 +146,77 @@ public class CandidatoService {
         Set<Municipios> municipios = new HashSet<>();
 
         for (Despesacandidato2004 d : despesas2004) {
-
             Municipios m = new Municipios(d.getNo_ue());
             municipios.add(m);
         }
 
         return municipios;
+    }
+
+    @WebMethod(operationName = "listarCandidatosPorMunicipio")
+    @WebResult(name = "candidatospormunicipio")
+    public List<DadosCandidatosPorMunicipio> listarCandidatosPorMunicipio(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
+
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.candidatos.pormunicipio", parametros);
+        Set<DadosCandidatosPorMunicipio> candidatosSemRepeticao = new HashSet<>();
+        for (Despesacandidato2004 despesas20041 : despesas2004) {
+            candidatosSemRepeticao.add(new DadosCandidatosPorMunicipio(despesas20041.getNo_cand(), despesas20041.getVr_despesa()));
+        }
+
+        for (DadosCandidatosPorMunicipio csr : candidatosSemRepeticao) {
+            for (Despesacandidato2004 despesas20041 : despesas2004) {
+                if (csr.getNomeCandidato().equalsIgnoreCase(despesas20041.getNo_cand())) {
+                    csr.implementarTotal(despesas20041.getVr_despesa());
+                }
+            }
+        }
+
+        List<DadosCandidatosPorMunicipio> candidatosComMaioresGastos = new ArrayList<>();
+        candidatosComMaioresGastos.addAll(candidatosSemRepeticao);        
+        Collections.sort(candidatosComMaioresGastos);
+        
+        List<DadosCandidatosPorMunicipio> retorno = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            retorno.add(candidatosComMaioresGastos.get(i));
+        }
+        
+        return retorno;
+        
+
+//        
+//        
+//        
+//        despesas2004.stream().forEach((desp2004) -> {
+//            candidatosPorMunicipio.add(new DadosCandidatosPorMunicipio(desp2004.getNo_cand(), desp2004.getVr_despesa()));
+//        });
+//
+//        Set<DadosCandidatosPorMunicipio> setCandidatos = new HashSet<>();
+//
+//        candidatosPorMunicipio.stream().forEach((d) -> {
+//            if (setCandidatos.contains(d)) {
+//                setCandidatos.stream().filter((setCandidato) -> (setCandidato.equals(d))).forEach((DadosCandidatosPorMunicipio setCandidato) -> {                    
+//                    setCandidato.implementarTotal((long)d.getTotalDeGastos());
+//                });
+//            } else {
+//                setCandidatos.add(new DadosCandidatosPorMunicipio(d.getNomeCandidato(), d.getVr_desp()));
+//            }
+//        });                
+//        
+//        List<DadosCandidatosPorMunicipio> osMaisGastadores = new ArrayList<>();          
+//        for (DadosCandidatosPorMunicipio sc : setCandidatos) {
+//            osMaisGastadores.add(sc);
+//        }
+//        
+//        Collections.sort(osMaisGastadores);
+//            
+//        List<DadosCandidatosPorMunicipio> retorno = new ArrayList<>();
+//        for(int i = 0; i < 10; i++){
+//            retorno.add(osMaisGastadores.get(i));
+//        }
+//        return retorno;
     }
 
 }
