@@ -22,7 +22,11 @@ import javax.jws.WebParam;
 import com.pos.extracttransformload.objectValues.DadosCompletosCandidato;
 import com.pos.extracttransformload.objectValues.DadosResumidosCandidato;
 import com.pos.extracttransformload.objectValues.DespesaCandidato;
+import com.pos.extracttransformload.objectValues.Doacao;
+import com.pos.extracttransformload.objectValues.Doador;
 import com.pos.extracttransformload.objectValues.ReceitaCandidato;
+import java.util.HashSet;
+import java.util.Set;
 import javax.jws.WebResult;
 
 /**
@@ -92,7 +96,9 @@ public class CandidatoService {
 
                 Despesacandidato2004 d = despesas2004.get(0);
                 candidato = new DadosCompletosCandidato(d.getNo_cand(), d.getDs_cargo(), d.getNr_cand(), d.getNo_ue(), d.getSg_ue(), d.getSg_part(), "2004", despesas, receitas);
-            }else throw new CandidatoNaoEncontradoExcetpion("Nenhum candidato encontrado com o nome de: "+nome+ " para o ano especificado");
+            } else {
+                throw new CandidatoNaoEncontradoExcetpion("Nenhum candidato encontrado com o nome de: " + nome + " para o ano especificado");
+            }
         }
         return candidato;
     }
@@ -102,7 +108,7 @@ public class CandidatoService {
     public List<DadosResumidosCandidato> listarCandidatosPorNome(@WebParam(name = "nome") String nome) {
 
         Map<String, Object> parametros = new HashMap<>();
-        parametros.put("nome", nome);
+        parametros.put("nome", "%" + nome + "%");
         List<Receitacandidato2002> receitas2002 = daoReceitaCandidato2002.consultaLista("buscar.receitacandidato2002.pornome", parametros);
         List<Receitacandidato2004> receitas2004 = daoReceitaCandidato2004.consultaLista("buscar.receitacandidato2004.pornome", parametros);
 
@@ -126,6 +132,49 @@ public class CandidatoService {
         }
 
         return candidatos;
+    }
+
+    @WebMethod(operationName = "listarDoadoresPorNome")
+    @WebResult(name = "doadores")
+    public HashSet<Doador> listarDoadoresPorNome(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();;;;;
+        parametros.put("nome", "%" + nome + "%");
+        List<Receitacandidato2002> receitas2002 = daoReceitaCandidato2002.consultaLista("buscar.receitacandidato2002.porDoador", parametros);
+        List<Receitacandidato2004> receitas2004 = daoReceitaCandidato2004.consultaLista("buscar.receitacandidato2004.porDoador", parametros);
+
+        HashSet<Doador> doadores = new HashSet<>();
+
+        Map<String, List<Doacao>> doacoes = new HashMap<>();
+        for (Receitacandidato2004 r : receitas2004) {
+            List<Doacao> listDoacoes = doacoes.get(r.getNo_doador());
+            if(listDoacoes == null){
+                listDoacoes = new ArrayList<>();
+            }
+            listDoacoes.add(new Doacao(r.getNo_cand(), r.getSg_part(), r.getVr_receita(), r.getDt_receita()));
+            doacoes.put(r.getNo_doador(), listDoacoes);
+        }
+
+        for (Receitacandidato2002 r : receitas2002) {
+            List<Doacao> listDoacoes = doacoes.get(r.getNo_doador());
+            if(listDoacoes == null){
+                listDoacoes = new ArrayList<>();
+            }
+            listDoacoes.add(new Doacao(r.getNo_cand(), r.getSg_part(), r.getVr_receita(), r.getDt_receita()));
+            doacoes.put(r.getNo_doador(), listDoacoes);
+        }
+
+        for (Receitacandidato2004 r : receitas2004) {
+            Doador doador = new Doador(r.getNo_doador(), r.getSg_ue(), r.getCd_cpf_cgc_doa(), doacoes.get(r.getNo_doador()));
+            doadores.add(doador);
+
+        }
+        for (Receitacandidato2002 r : receitas2002) {
+            Doador doador = new Doador(r.getNo_doador(), r.getSg_uf_doador(), r.getCd_cpf_cgc(), doacoes.get(r.getNo_doador()));
+            doadores.add(doador);
+        }
+
+        return doadores;
     }
 
 }

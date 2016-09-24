@@ -20,14 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(
             name = "buscar.receitacandidato2004.pornome", 
-            query = "SELECT r FROM Receitacandidato2004 r WHERE UPPER(r.no_cand) LIKE :nome"),
+            query = "SELECT r FROM Receitacandidato2004 r WHERE r.no_cand LIKE UPPER(:nome)"),
     @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.ano =:ano"),
-    @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porestadoeano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado AND d.ano =:ano"
-    )
+            name = "buscar.receitacandidato2004.porDoador", 
+            query = "SELECT r FROM Receitacandidato2004 r WHERE r.no_doador LIKE UPPER(:nome)")
+   
 })
 @Entity
 @XmlRootElement

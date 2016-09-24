@@ -13,6 +13,12 @@
 <message name="CandidatoNaoEncontradoExcetpion">
 <part name="fault" element="tns:CandidatoNaoEncontradoExcetpion"/>
 </message>
+<message name="listarDoadoresPorNome">
+<part name="parameters" element="tns:listarDoadoresPorNome"/>
+</message>
+<message name="listarDoadoresPorNomeResponse">
+<part name="parameters" element="tns:listarDoadoresPorNomeResponse"/>
+</message>
 <message name="listarCandidatosPorNome">
 <part name="parameters" element="tns:listarCandidatosPorNome"/>
 </message>
@@ -24,6 +30,10 @@
 <input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoRequest" message="tns:obterDadosDeCandidato"/>
 <output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoResponse" message="tns:obterDadosDeCandidatoResponse"/>
 <fault message="tns:CandidatoNaoEncontradoExcetpion" name="CandidatoNaoEncontradoExcetpion" wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidato/Fault/CandidatoNaoEncontradoExcetpion"/>
+</operation>
+<operation name="listarDoadoresPorNome">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeRequest" message="tns:listarDoadoresPorNome"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeResponse" message="tns:listarDoadoresPorNomeResponse"/>
 </operation>
 <operation name="listarCandidatosPorNome">
 <input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorNomeRequest" message="tns:listarCandidatosPorNome"/>
@@ -43,6 +53,15 @@
 <fault name="CandidatoNaoEncontradoExcetpion">
 <soap:fault name="CandidatoNaoEncontradoExcetpion" use="literal"/>
 </fault>
+</operation>
+<operation name="listarDoadoresPorNome">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
 </operation>
 <operation name="listarCandidatosPorNome">
 <soap:operation soapAction=""/>

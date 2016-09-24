@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(
             name = "buscar.despesacandidato2004.pornome", 
-            query = "SELECT d FROM Despesacandidato2004 d WHERE UPPER(d.no_cand) LIKE :nome"),
+            query = "SELECT d FROM Despesacandidato2004 d WHERE d.no_cand LIKE UPPER(:nome)"),
     @NamedQuery(
             name = "buscar.candidatoscommaioresdespesas.porano", 
             query = "SELECT d FROM DespesaCandidato d WHERE d.ano =:ano"),

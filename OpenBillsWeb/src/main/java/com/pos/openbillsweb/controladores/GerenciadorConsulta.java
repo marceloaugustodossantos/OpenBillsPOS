@@ -10,6 +10,8 @@ import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
 import com.pos.openbillsweb.webservicesCli.DadosCompletosCandidato;
 import com.pos.openbillsweb.webservicesCli.DadosResumidosCandidato;
+import com.pos.openbillsweb.webservicesCli.Doacao;
+import com.pos.openbillsweb.webservicesCli.Doador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,8 @@ public class GerenciadorConsulta implements Serializable{
     String anoBusca = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
-        
+    List<Doador> doadores = new ArrayList<>();
+    Doador doador = new Doador();
     
     public String buscarCandidato(){
         return "candidatos.xhtml";
@@ -50,6 +53,14 @@ public class GerenciadorConsulta implements Serializable{
     public String listarCandidatosPorNome(){
         this.dadosCandidatos = candidatoService.listarCandidatosPorNome(nomeBusca);
         return "candidatos.xhtml";
+    }
+    public String listarDoadoresPorNome(){
+        this.doadores = candidatoService.listarDoadoresPorNome(nomeBusca);
+        return "doadores.xhtml";
+    }
+    public String visualizarDoador(Doador d){
+        doador = d;
+        return "doador.xhtml";
     }
     
     public String visualizarCandidato(String nome, String ano){
@@ -97,6 +108,35 @@ public class GerenciadorConsulta implements Serializable{
     public void setDadosCandidatos(List<DadosResumidosCandidato> dadosCandidatos) {
         this.dadosCandidatos = dadosCandidatos;
     }
+
+    public List<Doador> getDoadores() {
+        return doadores;
+    }
+
+    public void setDoadores(List<Doador> doadores) {
+        this.doadores = doadores;
+    }
+
+    public Doador getDoador() {
+        return doador;
+    }
+
+    public void setDoador(Doador doador) {
+        this.doador = doador;
+    }
     
+    public int getPorcentagemDoacao(double valorDoado){
+        double total = caucularValorTotalDoado();
+        return  (int) ((valorDoado * 100) / total);
+        
+    }
+
+    public double caucularValorTotalDoado() {
+        double total = 0;
+        for(Doacao d : doador.getDoacoes()){
+            total += d.getValorDoado();
+        }
+        return total;
+    }
     
 }

@@ -6,9 +6,15 @@
 
 <xs:element name="dadosResumidosCandidato" type="tns:dadosResumidosCandidato"/>
 
+<xs:element name="doador" type="tns:doador"/>
+
 <xs:element name="listarCandidatosPorNome" type="tns:listarCandidatosPorNome"/>
 
 <xs:element name="listarCandidatosPorNomeResponse" type="tns:listarCandidatosPorNomeResponse"/>
+
+<xs:element name="listarDoadoresPorNome" type="tns:listarDoadoresPorNome"/>
+
+<xs:element name="listarDoadoresPorNomeResponse" type="tns:listarDoadoresPorNomeResponse"/>
 
 <xs:element name="obterDadosDeCandidato" type="tns:obterDadosDeCandidato"/>
 
@@ -66,6 +72,36 @@
 <xs:complexType name="CandidatoNaoEncontradoExcetpion">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarDoadoresPorNome">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarDoadoresPorNomeResponse">
+<xs:sequence>
+<xs:element name="doadores" type="tns:doador" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="doador">
+<xs:sequence>
+<xs:element name="cpfDoador" type="xs:string" minOccurs="0"/>
+<xs:element name="doacoes" type="tns:doacao" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="nomeDoador" type="xs:string" minOccurs="0"/>
+<xs:element name="ufDoador" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="doacao">
+<xs:sequence>
+<xs:element name="dataDoacao" type="xs:string" minOccurs="0"/>
+<xs:element name="nomeCandidato" type="xs:string" minOccurs="0"/>
+<xs:element name="partidoCandidato" type="xs:string" minOccurs="0"/>
+<xs:element name="valorDoado" type="xs:double"/>
 </xs:sequence>
 </xs:complexType>
 
