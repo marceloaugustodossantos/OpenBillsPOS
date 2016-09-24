@@ -26,7 +26,7 @@
                     </p>
                 </div>
             </div>
-
+            <div id="tal"></div>
             <div class="row">
 
                 <div class="col-md-4">
@@ -108,38 +108,65 @@
                                 <div class="cabecalhoColuna"><h3>Despesas</h3></div>                                            
                                 <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.dadosCandidato.despesas}" var="d">
                                     <h:column>
-                                        <f:facet name="header">Tipo de despesa</f:facet>
-                                        <h:outputText value="#{d.tipoDespesa}"></h:outputText>
-                                    </h:column>                                
-                                    <h:column>
-                                        <f:facet name="header">Fornecedor</f:facet>
-                                        <h:outputText value="#{d.nomeFornecedor}"></h:outputText>
-                                    </h:column>                                
-                                    <h:column>
-                                        <f:facet name="header">Valor</f:facet>
-                                        <h:outputText value="#{d.valorDespesa}"></h:outputText>
-                                    </h:column>                                
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <b>Tipo de despesa </b><br></br>
+                                                <h:outputText value="#{d.tipoDespesa}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <b>Fornecedor </b><br></br>
+                                                <h:outputText value="#{d.nomeFornecedor}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-1 text-right">
+                                                <b>Valor R$ </b><br></br>
+                                                <span class="label label-danger"><h:outputText value="#{d.valorDespesa}"></h:outputText></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar"  
+                                                         style="width: #{gerenciadorConsulta.getPorcentagemDespesa(d.valorDespesa)}%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:column>                                                                   
                                 </h:dataTable>
                             </div>
                             <div class="col-md-12">
                                 <div class="cabecalhoColuna"><h3>Receitas</h3></div>                                            
                                 <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.dadosCandidato.receitas}" var="r">
                                     <h:column>
-                                        <f:facet name="header">Doador</f:facet>
-                                        <h:outputText value="#{r.nomeDoador}"></h:outputText>
-                                    </h:column>                                
-                                    <h:column>
-                                        <f:facet name="header">Data</f:facet>
-                                        <h:outputText value="#{r.cpfDoDoador}"></h:outputText>
-                                    </h:column>                                
-                                    <h:column>
-                                        <f:facet name="header">Recurso</f:facet>
-                                        <h:outputText value="#{r.tipoRecurso}"></h:outputText>
-                                    </h:column>                                
-                                    <h:column>
-                                        <f:facet name="header">Valor</f:facet>
-                                        <h:outputText value="#{r.valorReceita}"></h:outputText>
-                                    </h:column>                                
+                                        
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <b>Doador </b><br></br>
+                                                <h:outputText value="#{r.nomeDoador}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>Data </b><br></br>
+                                                <h:outputText value="#{r.dataReceita}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <b>Tipo de recurso </b><br></br>
+                                                <h:outputText value="#{r.tipoRecurso}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-1 text-right">
+                                                <b>Valor R$ </b><br></br>
+                                                <span class="label label-danger"><h:outputText value="#{r.valorReceita}"></h:outputText></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="progress">
+                                                    <div class="progress-bar progress-bar-info" role="progressbar"  
+                                                         style="width: #{gerenciadorConsulta.getPorcentagemReceita(r.valorReceita)}%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </h:column>                                                                
                                 </h:dataTable>
                             </div>
                         </div>

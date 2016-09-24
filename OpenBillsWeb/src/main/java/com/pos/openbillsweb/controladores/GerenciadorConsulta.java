@@ -10,8 +10,10 @@ import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
 import com.pos.openbillsweb.webservicesCli.DadosCompletosCandidato;
 import com.pos.openbillsweb.webservicesCli.DadosResumidosCandidato;
+import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
 import com.pos.openbillsweb.webservicesCli.Doacao;
 import com.pos.openbillsweb.webservicesCli.Doador;
+import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +132,16 @@ public class GerenciadorConsulta implements Serializable{
         return  (int) ((valorDoado * 100) / total);
         
     }
+    public int getPorcentagemDespesa(double valor){
+        double total = caucularValorTotalDeDespesas();
+        return  (int) ((valor * 100) / total);
+        
+    }
+    public int getPorcentagemReceita(double valor){
+        double total = caucularValorTotalDeReceitas();
+        return  (int) ((valor * 100) / total);
+        
+    }
 
     public double caucularValorTotalDoado() {
         double total = 0;
@@ -138,5 +150,20 @@ public class GerenciadorConsulta implements Serializable{
         }
         return total;
     }
+    public double caucularValorTotalDeDespesas() {
+        double total = 0;
+        for(DespesaCandidato d : dadosCandidato.getDespesas()){
+            total += d.getValorDespesa();
+        }
+        return total;
+    }
+    public double caucularValorTotalDeReceitas() {
+        double total = 0;
+        for(ReceitaCandidato r : dadosCandidato.getReceitas()){
+            total += r.getValorReceita();
+        }
+        return total;
+    }
+    
     
 }
