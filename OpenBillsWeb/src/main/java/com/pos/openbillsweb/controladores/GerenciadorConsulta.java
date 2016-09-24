@@ -18,6 +18,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -32,6 +33,7 @@ public class GerenciadorConsulta implements Serializable {
     String nomeBusca = "";
     String anoBusca = "";
     String cidadeBusca = "";
+    String nomeMunicipioPesquisado = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
     List<Municipios> listaMunicipios = new ArrayList<>();
@@ -74,7 +76,8 @@ public class GerenciadorConsulta implements Serializable {
     }
 
     public String visualizarMunicipio(String nomeMunicipio) {
-        System.out.println("Entrou no Metodo");
+        RequestContext.getCurrentInstance().execute("buscarCandidatosPorCidade('" + nomeMunicipio + "')");
+        this.nomeMunicipioPesquisado = nomeMunicipio;
         return "informacoes_de_cidade_selecionada.xhtml";
     }
 
@@ -129,6 +132,14 @@ public class GerenciadorConsulta implements Serializable {
 
     public void setListaMunicipios(List<Municipios> listaMunicipios) {
         this.listaMunicipios = listaMunicipios;
+    }
+
+    public String getNomeMunicipioPesquisado() {
+        return nomeMunicipioPesquisado;
+    }
+
+    public void setNomeMunicipioPesquisado(String nomeMunicipioPesquisado) {
+        this.nomeMunicipioPesquisado = nomeMunicipioPesquisado;
     }
 
 }
