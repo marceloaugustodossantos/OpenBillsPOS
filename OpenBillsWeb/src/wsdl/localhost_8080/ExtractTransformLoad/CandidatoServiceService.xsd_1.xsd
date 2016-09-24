@@ -8,6 +8,10 @@
 
 <xs:element name="doador" type="tns:doador"/>
 
+<xs:element name="listarCandidatosPorMunicipio" type="tns:listarCandidatosPorMunicipio"/>
+
+<xs:element name="listarCandidatosPorMunicipioResponse" type="tns:listarCandidatosPorMunicipioResponse"/>
+
 <xs:element name="listarCandidatosPorNome" type="tns:listarCandidatosPorNome"/>
 
 <xs:element name="listarCandidatosPorNomeResponse" type="tns:listarCandidatosPorNomeResponse"/>
@@ -15,6 +19,10 @@
 <xs:element name="listarDoadoresPorNome" type="tns:listarDoadoresPorNome"/>
 
 <xs:element name="listarDoadoresPorNomeResponse" type="tns:listarDoadoresPorNomeResponse"/>
+
+<xs:element name="listarMunicipiosPorNome" type="tns:listarMunicipiosPorNome"/>
+
+<xs:element name="listarMunicipiosPorNomeResponse" type="tns:listarMunicipiosPorNomeResponse"/>
 
 <xs:element name="obterDadosDeCandidato" type="tns:obterDadosDeCandidato"/>
 
@@ -105,6 +113,26 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="listarCandidatosPorMunicipio">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarCandidatosPorMunicipioResponse">
+<xs:sequence>
+<xs:element name="candidatospormunicipio" type="tns:dadosCandidatosPorMunicipio" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dadosCandidatosPorMunicipio">
+<xs:sequence>
+<xs:element name="nomeCandidato" type="xs:string" minOccurs="0"/>
+<xs:element name="totalDeGastos" type="xs:double"/>
+<xs:element name="vr_desp" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="listarCandidatosPorNome">
 <xs:sequence>
 <xs:element name="nome" type="xs:string" minOccurs="0"/>
@@ -123,6 +151,24 @@
 <xs:element name="cargo" type="xs:string" minOccurs="0"/>
 <xs:element name="nome" type="xs:string" minOccurs="0"/>
 <xs:element name="partido" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarMunicipiosPorNome">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarMunicipiosPorNomeResponse">
+<xs:sequence>
+<xs:element name="municipios" type="tns:municipios" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="municipios">
+<xs:sequence>
+<xs:element name="nomeMunicipio" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

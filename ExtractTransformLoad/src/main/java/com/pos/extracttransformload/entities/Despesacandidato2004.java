@@ -6,8 +6,8 @@
 package com.pos.extracttransformload.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -22,18 +22,17 @@ import javax.xml.bind.annotation.XmlRootElement;
             name = "buscar.despesacandidato2004.pornome", 
             query = "SELECT d FROM Despesacandidato2004 d WHERE d.no_cand LIKE UPPER(:nome)"),
     @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.ano =:ano"),
+            name = "buscar.municipios.pornome",
+            query = "SELECT d FROM Despesacandidato2004 d WHERE d.no_ue LIKE UPPER(:nome)"),
     @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porestadoeano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado AND d.ano =:ano"
-    )
+            name = "buscar.candidatos.pormunicipio",
+            query = "SELECT d FROM Despesacandidato2004 d WHERE d.no_ue LIKE UPPER(:nome)")
 })
 @Entity
 @XmlRootElement
 public class Despesacandidato2004 implements Serializable {
-    
-    @Id 
+
+    @Id
     private Integer id;
     private String no_cand;
     private String ds_cargo;
@@ -244,7 +243,28 @@ public class Despesacandidato2004 implements Serializable {
     public void setRv_meaning(String rv_meaning) {
         this.rv_meaning = rv_meaning;
     }
-    
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + Objects.hashCode(this.no_cand);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Despesacandidato2004 other = (Despesacandidato2004) obj;
+        if (!Objects.equals(this.no_cand, other.no_cand)) {
+            return false;
+        }
+        return true;
+    }
     
     
 }

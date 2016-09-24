@@ -121,7 +121,4 @@ public class DAOJPA<T> implements DAO<T> {
     public EntityManager getEntityManager() {
         return entityManager;
     }
-    
-    
-
 }

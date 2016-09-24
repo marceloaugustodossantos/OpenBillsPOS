@@ -70,7 +70,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            
+
             <div class="row">
                 <div class="col-md-3">
                     <h:form>
@@ -97,14 +97,16 @@
                     </h:form>
                 </div>
                 <div class="col-md-3">
-                    <a href="#">
-                        <div class="thumbnail heightTumbnail">
-                            <img src="assets/images/bar-chart-5-512.png" width="170"></img>
-                            <div class="caption">
-                                <h4>Ranking dos candidatos que mais gastaram em sua cidade</h4>
+                    <h:form>
+                        <h:commandLink action="#{gerenciadorConsulta.buscarCandidatosQueMaisGastaram()}">
+                            <div class="thumbnail heightTumbnail">
+                                <img src="assets/images/bar-chart-5-512.png" width="170"></img>
+                                <div class="caption">
+                                    <h4>Ranking dos candidatos que mais gastaram em sua cidade</h4>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </h:commandLink>
+                    </h:form>                    
                 </div>
                 <div class="col-md-3" >
                     <a href="#">
@@ -120,108 +122,112 @@
             </div>
 
 
-            <!--            <div class="row">
-                            <div class="col-md-5">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading fonteMedia">
-                                        Maiores despesas e receitas de candidatos e comitês
-                                    </div>
-                                    <div class="panel-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group col-md-12">
-                                                <label>Tipo da consulta</label>
-                                                <select class="form-control" >
-                                                    <option value="Todos">Candidatos com maiores receitas</option>
-                                                    <option value="Todos">Candidatos com maiores despesas</option>
-                                                    <option value="Todos">Comitês com maiores receitas</option>
-                                                    <option value="Todos">Comitês com maiores despesas</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label>Estado</label>
-                                                <select class="form-control" >
-                                                    <option value="Todos">Todos</option>
-                                                    <option value="AC">Acre</option>
-                                                    <option value="AL">Alagoas</option>
-                                                    <option value="AP">Amapá</option>
-                                                    <option value="AM">Amazonas</option>
-                                                    <option value="BA">Bahia</option>
-                                                    <option value="CE">Ceará</option>
-                                                    <option value="DF">Distrito Federal</option>
-                                                    <option value="ES">Espírito Santo</option>
-                                                    <option value="GO">Goiás</option>
-                                                    <option value="MA">Maranhão</option>
-                                                    <option value="MT">Mato Grosso</option>
-                                                    <option value="MS">Mato Grosso do Sul</option>
-                                                    <option value="MG">Minas Gerais</option>
-                                                    <option value="PA">Pará</option>
-                                                    <option value="PB">Paraíba</option>
-                                                    <option value="PR">Paraná</option>
-                                                    <option value="PE">Pernambuco</option>
-                                                    <option value="PI">Piauí</option>
-                                                    <option value="RJ">Rio de Janeiro</option>
-                                                    <option value="RN">Rio Grande do Norte</option>
-                                                    <option value="RS">Rio Grande do Sul</option>
-                                                    <option value="RO">Rondônia</option>
-                                                    <option value="RR">Roraima</option>
-                                                    <option value="SC">Santa Catarina</option>
-                                                    <option value="SP">São Paulo</option>
-                                                    <option value="SE">Sergipe</option>
-                                                    <option value="TO">Tocantins</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <label>Ano da campanha</label>
-                                                <select class="form-control" >
-                                                    <option value="Todos">Todos</option>
-                                                    <option value="2002">2002</option>
-                                                    <option value="2004">2004</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group col-md-12">
-                                                <button class="btn btn-lg btn-success">
-                                                    <span class="glyphicon glyphicon-search"></span> Pesquisar
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-            
-                            <div class="col-md-7">
-                                <div class="panel panel-primary">                    
-                                    <div class="panel-body">
-                                        <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
-                                    </div>
-                                </div>
-                            </div>
+<!--            <div class="row">
+                <div class="col-md-5">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading fonteMedia">
+                            Maiores despesas e receitas de candidatos e comitês
                         </div>
-                        <div class="row">
-                            <div class="panel panel-primary">
-                                <div class="panel-heading fonteMedia">
-                                    Informações do candidato
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group col-md-12">
+                                    <label>Tipo da consulta</label>
+                                    <select class="form-control" >
+                                        <option value="Todos">Candidatos com maiores receitas</option>
+                                        <option value="Todos">Candidatos com maiores despesas</option>
+                                        <option value="Todos">Comitês com maiores receitas</option>
+                                        <option value="Todos">Comitês com maiores despesas</option>
+                                    </select>
                                 </div>
-                                <div class="panel-body" style="min-height: 300px">
-                                    <div class="col-md-4">
-                                        <a href="candidatos.xhtml">
-                                            <div class="panel panel-default">
-                                                <div class="panel-body">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <span class="glyphicon glyphicon-user glyphiconGrande"></span>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <h4 class="media-heading">Buscar informações de um candidato</h4>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Estado</label>
+                                    <select class="form-control" >
+                                        <option value="Todos">Todos</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="DF">Distrito Federal</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul</option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul</option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina</option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>Ano da campanha</label>
+                                    <select class="form-control" >
+                                        <option value="Todos">Todos</option>
+                                        <option value="2002">2002</option>
+                                        <option value="2004">2004</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <h:form>
+                                        <h:commandLink onclick="buscarCandidatosPorCidade('Cachoeira')">clique aqui</h:commandLink>
+                                    </h:form>
+
+                                    <button class="btn btn-lg btn-success">
+                                        <span class="glyphicon glyphicon-search"></span> Pesquisar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="panel panel-primary">                    
+                        <div class="panel-body">
+                            <div id="container" style="min-width: 300px; height: 400px; margin: 0 auto"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading fonteMedia">
+                        Informações do candidato
+                    </div>
+                    <div class="panel-body" style="min-height: 300px">
+                        <div class="col-md-4">
+                            <a href="candidatos.xhtml">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="media">
+                                            <div class="media-left">
+                                                <span class="glyphicon glyphicon-user glyphiconGrande"></span>
                                             </div>
-                                        </a>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">Buscar informações de um candidato</h4>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                        </div>-->
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>-->
 
         </div>
 

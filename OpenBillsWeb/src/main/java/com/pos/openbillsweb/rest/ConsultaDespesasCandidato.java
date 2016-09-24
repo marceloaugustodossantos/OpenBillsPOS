@@ -5,33 +5,54 @@
  */
 package com.pos.openbillsweb.rest;
 
-
+import com.pos.openbillsweb.webservicesCli.CandidatoService;
+import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
+import com.pos.openbillsweb.webservicesCli.DadosCandidatosPorMunicipio;
+import java.util.List;
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author marcelo
  */
-//@Path("despesascandidato")
+@Path("despesascandidato")
 public class ConsultaDespesasCandidato {
+
+    CandidatoService candidatoService;
+
+    public ConsultaDespesasCandidato() {
+        candidatoService = new CandidatoServiceService().getCandidatoServicePort();
+    }
 
 //    CandidatoService candidatoServicePort = new CandidatoServiceService().getCandidatoServicePort();
 //
-//    @GET
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response obterCandidatosComMaioresDespesas() {
-//        List<DespesaCandidato> despCandidatos = candidatoServicePort.obterCandidatosComMaioresDespesas(2008, "todos", 10);
-//        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
-//
-//        for (DespesaCandidato r : despCandidatos) {
-//            JsonArrayBuilder arb = Json.createArrayBuilder();
-//            arb.add(r.getNoCand());
-//            arb.add(15000);
-//            despCandArray.add(arb);
-//        }
-//
-//        return Response.ok(despCandArray.build()).build();
-//    }
+    @GET
+    @Path("{municipio}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obterCandidatosComMaioresDespesasEmUmDeterminadoMunicipio(
+            @PathParam("municipio") String municipio) {
+
+        List<DadosCandidatosPorMunicipio> listarCandidatosPorMunicipio = candidatoService.listarCandidatosPorMunicipio(municipio);
+
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+
+        for (DadosCandidatosPorMunicipio dcpm : listarCandidatosPorMunicipio) {
+            JsonArrayBuilder arb = Json.createArrayBuilder();
+            arb.add(dcpm.getNomeCandidato());
+            arb.add(dcpm.getTotalDeGastos());
+            despCandArray.add(arb);
+        }
+
+        return Response.ok(despCandArray.build()).build();
+    }
 //
 //    @GET
 //    @Path("{estado}")

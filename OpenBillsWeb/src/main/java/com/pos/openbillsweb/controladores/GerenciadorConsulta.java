@@ -14,6 +14,7 @@ import com.pos.openbillsweb.webservicesCli.DespesaCandidato;
 import com.pos.openbillsweb.webservicesCli.Doacao;
 import com.pos.openbillsweb.webservicesCli.Doador;
 import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
+import com.pos.openbillsweb.webservicesCli.Municipios;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -28,31 +30,38 @@ import javax.inject.Named;
  */
 @Named("gerenciadorConsulta")
 @SessionScoped
-public class GerenciadorConsulta implements Serializable{
-    
+public class GerenciadorConsulta implements Serializable {
+
     CandidatoService candidatoService;
-    
+
     String nomeBusca = "";
     String anoBusca = "";
+    String cidadeBusca = "";
+    String nomeMunicipioPesquisado = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
     List<Doador> doadores = new ArrayList<>();
     Doador doador = new Doador();
     
-    public String buscarCandidato(){
+    List<Municipios> listaMunicipios = new ArrayList<>();
+
+    public String buscarCandidato() {
         return "candidatos.xhtml";
     }
-    
-    public String buscarDoador(){
+
+    public String buscarDoador() {
         return "doadores.xhtml";
     }
-    
-    
+
+    public String buscarCandidatosQueMaisGastaram() {
+        return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
+    }
+
     public GerenciadorConsulta() {
         candidatoService = new CandidatoServiceService().getCandidatoServicePort();
     }
-        
-    public String listarCandidatosPorNome(){
+
+    public String listarCandidatosPorNome() {
         this.dadosCandidatos = candidatoService.listarCandidatosPorNome(nomeBusca);
         return "candidatos.xhtml";
     }
@@ -65,7 +74,15 @@ public class GerenciadorConsulta implements Serializable{
         return "doador.xhtml";
     }
     
-    public String visualizarCandidato(String nome, String ano){
+
+    public String listarMunicipiosPorNome() {
+        System.out.println("Entrou No metodo!!!");
+        this.listaMunicipios = candidatoService.listarMunicipiosPorNome(cidadeBusca);
+        System.out.println("Pesquisou!!!");
+        return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
+    }
+
+    public String visualizarCandidato(String nome, String ano) {
         try {
             dadosCandidato = candidatoService.obterDadosDeCandidato(nome, ano);
         } catch (CandidatoNaoEncontradoExcetpion_Exception ex) {
@@ -73,7 +90,13 @@ public class GerenciadorConsulta implements Serializable{
         }
         return "candidato.xhtml";
     }
-        
+
+    public String visualizarMunicipio(String nomeMunicipio) {
+        RequestContext.getCurrentInstance().execute("buscarCandidatosPorCidade('" + nomeMunicipio + "')");
+        this.nomeMunicipioPesquisado = nomeMunicipio;
+        return "informacoes_de_cidade_selecionada.xhtml";
+    }
+
     private void alertStatus(String m) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, m, "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -166,4 +189,28 @@ public class GerenciadorConsulta implements Serializable{
     }
     
     
+    public String getCidadeBusca() {
+        return cidadeBusca;
+    }
+
+    public void setCidadeBusca(String cidadeBusca) {
+        this.cidadeBusca = cidadeBusca;
+    }
+
+    public List<Municipios> getListaMunicipios() {
+        return listaMunicipios;
+    }
+
+    public void setListaMunicipios(List<Municipios> listaMunicipios) {
+        this.listaMunicipios = listaMunicipios;
+    }
+
+    public String getNomeMunicipioPesquisado() {
+        return nomeMunicipioPesquisado;
+    }
+
+    public void setNomeMunicipioPesquisado(String nomeMunicipioPesquisado) {
+        this.nomeMunicipioPesquisado = nomeMunicipioPesquisado;
+    }
+
 }
