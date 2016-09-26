@@ -15,6 +15,7 @@ import com.pos.openbillsweb.webservicesCli.Doacao;
 import com.pos.openbillsweb.webservicesCli.Doador;
 import com.pos.openbillsweb.webservicesCli.ReceitaCandidato;
 import com.pos.openbillsweb.webservicesCli.Municipios;
+import com.pos.openbillsweb.webservicesCli.Partidos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +39,14 @@ public class GerenciadorConsulta implements Serializable {
     String anoBusca = "";
     String cidadeBusca = "";
     String nomeMunicipioPesquisado = "";
+    String nomePartidoPesquisado = "";
+    String partidoBusca = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
     List<Doador> doadores = new ArrayList<>();
-    Doador doador = new Doador();
-    
     List<Municipios> listaMunicipios = new ArrayList<>();
+    List<Partidos> listaPartidos = new ArrayList<>();
+    Doador doador = new Doador();
 
     public String buscarCandidato() {
         return "candidatos.xhtml";
@@ -57,6 +60,10 @@ public class GerenciadorConsulta implements Serializable {
         return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
     }
 
+    public String buscarPartidos() {
+        return "partidos.xhtml";
+    }
+
     public GerenciadorConsulta() {
         candidatoService = new CandidatoServiceService().getCandidatoServicePort();
     }
@@ -65,21 +72,27 @@ public class GerenciadorConsulta implements Serializable {
         this.dadosCandidatos = candidatoService.listarCandidatosPorNome(nomeBusca);
         return "candidatos.xhtml";
     }
-    public String listarDoadoresPorNome(){
+
+    public String listarDoadoresPorNome() {
         this.doadores = candidatoService.listarDoadoresPorNome(nomeBusca);
         return "doadores.xhtml";
     }
-    public String visualizarDoador(Doador d){
+
+    public String visualizarDoador(Doador d) {
         doador = d;
         return "doador.xhtml";
     }
-    
 
     public String listarMunicipiosPorNome() {
-        System.out.println("Entrou No metodo!!!");
         this.listaMunicipios = candidatoService.listarMunicipiosPorNome(cidadeBusca);
-        System.out.println("Pesquisou!!!");
         return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
+    }
+
+    public String listarPartidosPorNome() {
+        System.out.println("Entrou No metodo!!!");
+        this.listaPartidos = candidatoService.listarPartidosPorNome(partidoBusca);
+        System.out.println("Pesquisou!!!");
+        return "partidos.xhtml";
     }
 
     public String visualizarCandidato(String nome, String ano) {
@@ -96,6 +109,11 @@ public class GerenciadorConsulta implements Serializable {
         this.nomeMunicipioPesquisado = nomeMunicipio;
         return "informacoes_de_cidade_selecionada.xhtml";
     }
+    
+    public String visualizarPartido(String nomePartido) {
+        this.nomePartidoPesquisado = nomePartido;        
+        return "partido.xhtml";
+    }
 
     private void alertStatus(String m) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, m, "");
@@ -108,6 +126,22 @@ public class GerenciadorConsulta implements Serializable {
 
     public void setNomeBusca(String nomeBusca) {
         this.nomeBusca = nomeBusca;
+    }
+
+    public String getNomePartidoPesquisado() {
+        return nomePartidoPesquisado;
+    }
+
+    public void setNomePartidoPesquisado(String nomePartidoPesquisado) {
+        this.nomePartidoPesquisado = nomePartidoPesquisado;
+    }
+
+    public String getPartidoBusca() {
+        return partidoBusca;
+    }
+
+    public void setPartidoBusca(String partidoBusca) {
+        this.partidoBusca = partidoBusca;
     }
 
     public String getAnoBusca() {
@@ -149,46 +183,57 @@ public class GerenciadorConsulta implements Serializable {
     public void setDoador(Doador doador) {
         this.doador = doador;
     }
-    
-    public int getPorcentagemDoacao(double valorDoado){
+
+    public List<Partidos> getListaPartidos() {
+        return listaPartidos;
+    }
+
+    public void setListaPartidos(List<Partidos> listaPartidos) {
+        this.listaPartidos = listaPartidos;
+    }
+
+    public int getPorcentagemDoacao(double valorDoado) {
         double total = caucularValorTotalDoado();
-        return  (int) ((valorDoado * 100) / total);
-        
+        return (int) ((valorDoado * 100) / total);
+
     }
-    public int getPorcentagemDespesa(double valor){
+
+    public int getPorcentagemDespesa(double valor) {
         double total = caucularValorTotalDeDespesas();
-        return  (int) ((valor * 100) / total);
-        
+        return (int) ((valor * 100) / total);
+
     }
-    public int getPorcentagemReceita(double valor){
+
+    public int getPorcentagemReceita(double valor) {
         double total = caucularValorTotalDeReceitas();
-        return  (int) ((valor * 100) / total);
-        
+        return (int) ((valor * 100) / total);
+
     }
 
     public double caucularValorTotalDoado() {
         double total = 0;
-        for(Doacao d : doador.getDoacoes()){
+        for (Doacao d : doador.getDoacoes()) {
             total += d.getValorDoado();
         }
         return total;
     }
+
     public double caucularValorTotalDeDespesas() {
         double total = 0;
-        for(DespesaCandidato d : dadosCandidato.getDespesas()){
+        for (DespesaCandidato d : dadosCandidato.getDespesas()) {
             total += d.getValorDespesa();
         }
         return total;
     }
+
     public double caucularValorTotalDeReceitas() {
         double total = 0;
-        for(ReceitaCandidato r : dadosCandidato.getReceitas()){
+        for (ReceitaCandidato r : dadosCandidato.getReceitas()) {
             total += r.getValorReceita();
         }
         return total;
     }
-    
-    
+
     public String getCidadeBusca() {
         return cidadeBusca;
     }

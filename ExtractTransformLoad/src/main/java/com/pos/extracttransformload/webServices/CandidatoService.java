@@ -27,6 +27,7 @@ import com.pos.extracttransformload.objectValues.Doacao;
 import com.pos.extracttransformload.objectValues.Doador;
 import com.pos.extracttransformload.objectValues.ReceitaCandidato;
 import com.pos.extracttransformload.objectValues.Municipios;
+import com.pos.extracttransformload.objectValues.Partidos;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -227,40 +228,29 @@ public class CandidatoService {
             retorno.add(candidatosComMaioresGastos.get(i));
         }
         
-        return retorno;
-        
+        return retorno;       
+    }
+    
+    @WebMethod(operationName = "listarPartidosPorNome")
+    @WebResult(name = "partidospornome")
+    public Set<Partidos> listarPartidosPorNome(@WebParam(name = "nome") String nome) {
 
-//        
-//        
-//        
-//        despesas2004.stream().forEach((desp2004) -> {
-//            candidatosPorMunicipio.add(new DadosCandidatosPorMunicipio(desp2004.getNo_cand(), desp2004.getVr_despesa()));
-//        });
-//
-//        Set<DadosCandidatosPorMunicipio> setCandidatos = new HashSet<>();
-//
-//        candidatosPorMunicipio.stream().forEach((d) -> {
-//            if (setCandidatos.contains(d)) {
-//                setCandidatos.stream().filter((setCandidato) -> (setCandidato.equals(d))).forEach((DadosCandidatosPorMunicipio setCandidato) -> {                    
-//                    setCandidato.implementarTotal((long)d.getTotalDeGastos());
-//                });
-//            } else {
-//                setCandidatos.add(new DadosCandidatosPorMunicipio(d.getNomeCandidato(), d.getVr_desp()));
-//            }
-//        });                
-//        
-//        List<DadosCandidatosPorMunicipio> osMaisGastadores = new ArrayList<>();          
-//        for (DadosCandidatosPorMunicipio sc : setCandidatos) {
-//            osMaisGastadores.add(sc);
-//        }
-//        
-//        Collections.sort(osMaisGastadores);
-//            
-//        List<DadosCandidatosPorMunicipio> retorno = new ArrayList<>();
-//        for(int i = 0; i < 10; i++){
-//            retorno.add(osMaisGastadores.get(i));
-//        }
-//        return retorno;
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
+
+        List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.partidosdecandidatos2002.pornome", parametros);
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.partidosdecandidatos2004.pornome", parametros);
+        
+        Set<Partidos> partidos = new HashSet<>();
+        
+        for (Despesacandidato2002 dc2 : despesas2002){
+            partidos.add(new Partidos(dc2.getSg_part()));
+        }
+        for (Despesacandidato2004 dc4 : despesas2004){
+            partidos.add(new Partidos(dc4.getSg_part()));
+        }                
+        
+        return partidos;       
     }
 
 }
