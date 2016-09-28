@@ -53,6 +53,30 @@ public class ConsultaDespesasCandidato {
 
         return Response.ok(despCandArray.build()).build();
     }
+
+    @GET
+    @Path("partido/{partido}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response obterQtdeDePrefeitosEvereadoresPorPartido(
+            @PathParam("partido") String partido) {
+
+        int listarQuantidadeDePrefeitosDeUmPartido = candidatoService.listarQuantidadeDePrefeitosDeUmPartido(partido);
+        int listarQuantidadeDeVereadoresDeUmPartido = candidatoService.listarQuantidadeDeVereadoresDeUmPartido(partido);
+
+        JsonArrayBuilder despCandArray = Json.createArrayBuilder();
+        JsonArrayBuilder builder = Json.createArrayBuilder();
+        JsonArrayBuilder builder2 = Json.createArrayBuilder();
+
+        builder.add("Prefeitos");
+        builder.add(listarQuantidadeDePrefeitosDeUmPartido);
+        despCandArray.add(builder);
+        
+        builder2.add("Vereadores");
+        builder2.add(listarQuantidadeDeVereadoresDeUmPartido);
+        despCandArray.add(builder2);        
+
+        return Response.ok(despCandArray.build()).build();
+    }
 //
 //    @GET
 //    @Path("{estado}")

@@ -236,21 +236,67 @@ public class CandidatoService {
     @WebResult(name = "partidospornome")
     public Set<Partidos> listarPartidosPorNome(@WebParam(name = "nome") String nome) {
 
-            Map<String, Object> parametros = new HashMap<>();
-            parametros.put("nome", "%" + nome + "%");
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
 
         List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.partidosdecandidatos2002.pornome", parametros);
-            List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.partidosdecandidatos2004.pornome", parametros);
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.partidosdecandidatos2004.pornome", parametros);
 
-            Set<Partidos> partidos = new HashSet<>();
+        Set<Partidos> partidos = new HashSet<>();
 
-        for (Despesacandidato2002 dc2 : despesas2002){
+        for (Despesacandidato2002 dc2 : despesas2002) {
             partidos.add(new Partidos(dc2.getSg_part()));
         }
-        for (Despesacandidato2004 dc4 : despesas2004){
-                partidos.add(new Partidos(dc4.getSg_part()));
-            }
-            return partidos;
+        for (Despesacandidato2004 dc4 : despesas2004) {
+            partidos.add(new Partidos(dc4.getSg_part()));
         }
+        return partidos;
+    }
+    
+    @WebMethod(operationName = "listarQuantidadeDePrefeitosDeUmPartido")
+    @WebResult(name = "quantidadedeprefeitosporpartido")
+    public int listarQuantidadeDePrefeitosDeUmPartido(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
+        parametros.put("cargo", "%Prefeito%");
+
+        List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.cargosdepartido2002.pornome", parametros);
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.cargosdepartido2004.pornome", parametros);
+
+        Set<DadosResumidosCandidato> candidatosPorPartido = new HashSet<>();
+
+        
+        for (Despesacandidato2002 dc2 : despesas2002) {            
+            candidatosPorPartido.add(new DadosResumidosCandidato(dc2.getNo_cand(), "2002", dc2.getSg_part(), dc2.getDs_cargo()));            
+        }
+        for (Despesacandidato2004 dc4 : despesas2004) {
+            candidatosPorPartido.add(new DadosResumidosCandidato(dc4.getNo_cand(), "2004", dc4.getSg_part(), dc4.getDs_cargo()));                        
+        }
+        return candidatosPorPartido.size();
+    }
+    
+    @WebMethod(operationName = "listarQuantidadeDeVereadoresDeUmPartido")
+    @WebResult(name = "quantidadedevereadoresporpartido")
+    public int listarQuantidadeDeVereadoresDeUmPartido(@WebParam(name = "nome") String nome) {
+
+        Map<String, Object> parametros = new HashMap<>();
+        parametros.put("nome", "%" + nome + "%");
+        parametros.put("cargo", "%Vereador%");
+
+        List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.cargosdepartido2002.pornome", parametros);
+        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.cargosdepartido2004.pornome", parametros);
+
+        Set<DadosResumidosCandidato> candidatosPorPartido = new HashSet<>();
+
+        
+        for (Despesacandidato2002 dc2 : despesas2002) {            
+            candidatosPorPartido.add(new DadosResumidosCandidato(dc2.getNo_cand(), "2002", dc2.getSg_part(), dc2.getDs_cargo()));            
+        }
+        for (Despesacandidato2004 dc4 : despesas2004) {
+            candidatosPorPartido.add(new DadosResumidosCandidato(dc4.getNo_cand(), "2004", dc4.getSg_part(), dc4.getDs_cargo()));                        
+        }
+        return candidatosPorPartido.size();
+    }
 
 }

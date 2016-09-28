@@ -29,7 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
             query = "SELECT d FROM Despesacandidato2004 d WHERE d.no_ue LIKE UPPER(:nome)"),
     @NamedQuery(
             name = "buscar.partidosdecandidatos2004.pornome",
-            query = "SELECT d FROM Despesacandidato2004 d WHERE d.sg_part LIKE UPPER(:nome)")
+            query = "SELECT d FROM Despesacandidato2004 d WHERE d.sg_part LIKE UPPER(:nome)"),
+    @NamedQuery(
+            name = "buscar.cargosdepartido2004.pornome",
+            query = "SELECT d FROM Despesacandidato2004 d WHERE d.ds_cargo LIKE :cargo AND d.sg_part LIKE UPPER(:nome)")
 })
 @Entity
 @XmlRootElement

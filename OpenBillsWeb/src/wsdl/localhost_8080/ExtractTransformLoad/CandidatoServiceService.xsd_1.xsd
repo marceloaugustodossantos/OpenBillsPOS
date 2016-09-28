@@ -28,6 +28,14 @@
 
 <xs:element name="listarPartidosPorNomeResponse" type="tns:listarPartidosPorNomeResponse"/>
 
+<xs:element name="listarQuantidadeDePrefeitosDeUmPartido" type="tns:listarQuantidadeDePrefeitosDeUmPartido"/>
+
+<xs:element name="listarQuantidadeDePrefeitosDeUmPartidoResponse" type="tns:listarQuantidadeDePrefeitosDeUmPartidoResponse"/>
+
+<xs:element name="listarQuantidadeDeVereadoresDeUmPartido" type="tns:listarQuantidadeDeVereadoresDeUmPartido"/>
+
+<xs:element name="listarQuantidadeDeVereadoresDeUmPartidoResponse" type="tns:listarQuantidadeDeVereadoresDeUmPartidoResponse"/>
+
 <xs:element name="obterDadosDeCandidato" type="tns:obterDadosDeCandidato"/>
 
 <xs:element name="obterDadosDeCandidatoResponse" type="tns:obterDadosDeCandidatoResponse"/>
@@ -135,6 +143,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="listarQuantidadeDeVereadoresDeUmPartido">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarQuantidadeDeVereadoresDeUmPartidoResponse">
+<xs:sequence>
+<xs:element name="quantidadedevereadoresporpartido" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="listarCandidatosPorMunicipio">
 <xs:sequence>
 <xs:element name="nome" type="xs:string" minOccurs="0"/>
@@ -152,6 +172,18 @@
 <xs:element name="nomeCandidato" type="xs:string" minOccurs="0"/>
 <xs:element name="totalDeGastos" type="xs:double"/>
 <xs:element name="vr_desp" type="xs:double"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarQuantidadeDePrefeitosDeUmPartido">
+<xs:sequence>
+<xs:element name="nome" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listarQuantidadeDePrefeitosDeUmPartidoResponse">
+<xs:sequence>
+<xs:element name="quantidadedeprefeitosporpartido" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -4,11 +4,26 @@
 <xsd:import namespace="http://webServices.extracttransformload.pos.com/" schemaLocation="http://localhost:8080/ExtractTransformLoad/CandidatoServiceService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="listarCandidatosPorMunicipio">
-<part name="parameters" element="tns:listarCandidatosPorMunicipio"/>
+<message name="obterDadosDeCandidato">
+<part name="parameters" element="tns:obterDadosDeCandidato"/>
 </message>
-<message name="listarCandidatosPorMunicipioResponse">
-<part name="parameters" element="tns:listarCandidatosPorMunicipioResponse"/>
+<message name="obterDadosDeCandidatoResponse">
+<part name="parameters" element="tns:obterDadosDeCandidatoResponse"/>
+</message>
+<message name="CandidatoNaoEncontradoExcetpion">
+<part name="fault" element="tns:CandidatoNaoEncontradoExcetpion"/>
+</message>
+<message name="listarDoadoresPorNome">
+<part name="parameters" element="tns:listarDoadoresPorNome"/>
+</message>
+<message name="listarDoadoresPorNomeResponse">
+<part name="parameters" element="tns:listarDoadoresPorNomeResponse"/>
+</message>
+<message name="listarMunicipiosPorNome">
+<part name="parameters" element="tns:listarMunicipiosPorNome"/>
+</message>
+<message name="listarMunicipiosPorNomeResponse">
+<part name="parameters" element="tns:listarMunicipiosPorNomeResponse"/>
 </message>
 <message name="listarCandidatosPorNome">
 <part name="parameters" element="tns:listarCandidatosPorNome"/>
@@ -22,31 +37,37 @@
 <message name="listarPartidosPorNomeResponse">
 <part name="parameters" element="tns:listarPartidosPorNomeResponse"/>
 </message>
-<message name="obterDadosDeCandidato">
-<part name="parameters" element="tns:obterDadosDeCandidato"/>
+<message name="listarCandidatosPorMunicipio">
+<part name="parameters" element="tns:listarCandidatosPorMunicipio"/>
 </message>
-<message name="obterDadosDeCandidatoResponse">
-<part name="parameters" element="tns:obterDadosDeCandidatoResponse"/>
+<message name="listarCandidatosPorMunicipioResponse">
+<part name="parameters" element="tns:listarCandidatosPorMunicipioResponse"/>
 </message>
-<message name="CandidatoNaoEncontradoExcetpion">
-<part name="fault" element="tns:CandidatoNaoEncontradoExcetpion"/>
+<message name="listarQuantidadeDeVereadoresDeUmPartido">
+<part name="parameters" element="tns:listarQuantidadeDeVereadoresDeUmPartido"/>
 </message>
-<message name="listarMunicipiosPorNome">
-<part name="parameters" element="tns:listarMunicipiosPorNome"/>
+<message name="listarQuantidadeDeVereadoresDeUmPartidoResponse">
+<part name="parameters" element="tns:listarQuantidadeDeVereadoresDeUmPartidoResponse"/>
 </message>
-<message name="listarMunicipiosPorNomeResponse">
-<part name="parameters" element="tns:listarMunicipiosPorNomeResponse"/>
+<message name="listarQuantidadeDePrefeitosDeUmPartido">
+<part name="parameters" element="tns:listarQuantidadeDePrefeitosDeUmPartido"/>
 </message>
-<message name="listarDoadoresPorNome">
-<part name="parameters" element="tns:listarDoadoresPorNome"/>
-</message>
-<message name="listarDoadoresPorNomeResponse">
-<part name="parameters" element="tns:listarDoadoresPorNomeResponse"/>
+<message name="listarQuantidadeDePrefeitosDeUmPartidoResponse">
+<part name="parameters" element="tns:listarQuantidadeDePrefeitosDeUmPartidoResponse"/>
 </message>
 <portType name="CandidatoService">
-<operation name="listarCandidatosPorMunicipio">
-<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorMunicipioRequest" message="tns:listarCandidatosPorMunicipio"/>
-<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorMunicipioResponse" message="tns:listarCandidatosPorMunicipioResponse"/>
+<operation name="obterDadosDeCandidato">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoRequest" message="tns:obterDadosDeCandidato"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoResponse" message="tns:obterDadosDeCandidatoResponse"/>
+<fault message="tns:CandidatoNaoEncontradoExcetpion" name="CandidatoNaoEncontradoExcetpion" wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidato/Fault/CandidatoNaoEncontradoExcetpion"/>
+</operation>
+<operation name="listarDoadoresPorNome">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeRequest" message="tns:listarDoadoresPorNome"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeResponse" message="tns:listarDoadoresPorNomeResponse"/>
+</operation>
+<operation name="listarMunicipiosPorNome">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarMunicipiosPorNomeRequest" message="tns:listarMunicipiosPorNome"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarMunicipiosPorNomeResponse" message="tns:listarMunicipiosPorNomeResponse"/>
 </operation>
 <operation name="listarCandidatosPorNome">
 <input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorNomeRequest" message="tns:listarCandidatosPorNome"/>
@@ -56,49 +77,21 @@
 <input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarPartidosPorNomeRequest" message="tns:listarPartidosPorNome"/>
 <output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarPartidosPorNomeResponse" message="tns:listarPartidosPorNomeResponse"/>
 </operation>
-<operation name="obterDadosDeCandidato">
-<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoRequest" message="tns:obterDadosDeCandidato"/>
-<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidatoResponse" message="tns:obterDadosDeCandidatoResponse"/>
-<fault message="tns:CandidatoNaoEncontradoExcetpion" name="CandidatoNaoEncontradoExcetpion" wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/obterDadosDeCandidato/Fault/CandidatoNaoEncontradoExcetpion"/>
+<operation name="listarCandidatosPorMunicipio">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorMunicipioRequest" message="tns:listarCandidatosPorMunicipio"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarCandidatosPorMunicipioResponse" message="tns:listarCandidatosPorMunicipioResponse"/>
 </operation>
-<operation name="listarMunicipiosPorNome">
-<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarMunicipiosPorNomeRequest" message="tns:listarMunicipiosPorNome"/>
-<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarMunicipiosPorNomeResponse" message="tns:listarMunicipiosPorNomeResponse"/>
+<operation name="listarQuantidadeDeVereadoresDeUmPartido">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarQuantidadeDeVereadoresDeUmPartidoRequest" message="tns:listarQuantidadeDeVereadoresDeUmPartido"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarQuantidadeDeVereadoresDeUmPartidoResponse" message="tns:listarQuantidadeDeVereadoresDeUmPartidoResponse"/>
 </operation>
-<operation name="listarDoadoresPorNome">
-<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeRequest" message="tns:listarDoadoresPorNome"/>
-<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarDoadoresPorNomeResponse" message="tns:listarDoadoresPorNomeResponse"/>
+<operation name="listarQuantidadeDePrefeitosDeUmPartido">
+<input wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarQuantidadeDePrefeitosDeUmPartidoRequest" message="tns:listarQuantidadeDePrefeitosDeUmPartido"/>
+<output wsam:Action="http://webServices.extracttransformload.pos.com/CandidatoService/listarQuantidadeDePrefeitosDeUmPartidoResponse" message="tns:listarQuantidadeDePrefeitosDeUmPartidoResponse"/>
 </operation>
 </portType>
 <binding name="CandidatoServicePortBinding" type="tns:CandidatoService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="listarCandidatosPorMunicipio">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarCandidatosPorNome">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="listarPartidosPorNome">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="obterDadosDeCandidato">
 <soap:operation soapAction=""/>
 <input>
@@ -111,6 +104,15 @@
 <soap:fault name="CandidatoNaoEncontradoExcetpion" use="literal"/>
 </fault>
 </operation>
+<operation name="listarDoadoresPorNome">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="listarMunicipiosPorNome">
 <soap:operation soapAction=""/>
 <input>
@@ -120,7 +122,43 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="listarDoadoresPorNome">
+<operation name="listarCandidatosPorNome">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarPartidosPorNome">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarCandidatosPorMunicipio">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarQuantidadeDeVereadoresDeUmPartido">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="listarQuantidadeDePrefeitosDeUmPartido">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

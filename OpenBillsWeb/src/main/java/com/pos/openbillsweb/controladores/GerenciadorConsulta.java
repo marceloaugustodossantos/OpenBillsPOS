@@ -41,6 +41,9 @@ public class GerenciadorConsulta implements Serializable {
     String nomeMunicipioPesquisado = "";
     String nomePartidoPesquisado = "";
     String partidoBusca = "";
+    String partidoCargoBusca = "";
+    int qtdePrefeitosPorPartido = 0;
+    int qtdeVereadoresPorPartido = 0;
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
     List<Doador> doadores = new ArrayList<>();
@@ -89,9 +92,7 @@ public class GerenciadorConsulta implements Serializable {
     }
 
     public String listarPartidosPorNome() {
-        System.out.println("Entrou No metodo!!!");
         this.listaPartidos = candidatoService.listarPartidosPorNome(partidoBusca);
-        System.out.println("Pesquisou!!!");
         return "partidos.xhtml";
     }
 
@@ -109,15 +110,34 @@ public class GerenciadorConsulta implements Serializable {
         this.nomeMunicipioPesquisado = nomeMunicipio;
         return "informacoes_de_cidade_selecionada.xhtml";
     }
-    
+
     public String visualizarPartido(String nomePartido) {
-        this.nomePartidoPesquisado = nomePartido;        
+        this.nomePartidoPesquisado = nomePartido;
+        this.qtdePrefeitosPorPartido = candidatoService.listarQuantidadeDePrefeitosDeUmPartido(nomePartido);
+        this.qtdeVereadoresPorPartido = candidatoService.listarQuantidadeDeVereadoresDeUmPartido(nomePartido);
+        RequestContext.getCurrentInstance().execute("buscarQtdePrefeitosVereadoresporPartido('" + nomePartido + "')");
         return "partido.xhtml";
     }
 
     private void alertStatus(String m) {
         FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, m, "");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public int getQtdePrefeitosPorPartido() {
+        return qtdePrefeitosPorPartido;
+    }
+
+    public void setQtdePrefeitosPorPartido(int qtdePrefeitosPorPartido) {
+        this.qtdePrefeitosPorPartido = qtdePrefeitosPorPartido;
+    }
+
+    public int getQtdeVereadoresPorPartido() {
+        return qtdeVereadoresPorPartido;
+    }
+
+    public void setQtdeVereadoresPorPartido(int qtdeVereadoresPorPartido) {
+        this.qtdeVereadoresPorPartido = qtdeVereadoresPorPartido;
     }
 
     public String getNomeBusca() {
@@ -150,6 +170,14 @@ public class GerenciadorConsulta implements Serializable {
 
     public void setAnoBusca(String anoBusca) {
         this.anoBusca = anoBusca;
+    }
+
+    public String getPartidoCargoBusca() {
+        return partidoCargoBusca;
+    }
+
+    public void setPartidoCargoBusca(String partidoCargoBusca) {
+        this.partidoCargoBusca = partidoCargoBusca;
     }
 
     public DadosCompletosCandidato getDadosCandidato() {

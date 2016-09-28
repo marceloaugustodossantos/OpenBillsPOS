@@ -19,17 +19,20 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @NamedQueries({
     @NamedQuery(
-            name = "buscar.despesacandidato2002.pornome", 
+            name = "buscar.despesacandidato2002.pornome",
             query = "SELECT d FROM Despesacandidato2002 d WHERE d.no_cand LIKE UPPER(:nome)"),
     @NamedQuery(
             name = "buscar.partidosdecandidatos2002.pornome",
-            query = "SELECT d FROM Despesacandidato2002 d WHERE d.sg_part LIKE UPPER(:nome)")
+            query = "SELECT d FROM Despesacandidato2002 d WHERE d.sg_part LIKE UPPER(:nome)"),
+    @NamedQuery(
+            name = "buscar.cargosdepartido2002.pornome",
+            query = "SELECT d FROM Despesacandidato2002 d WHERE d.ds_cargo LIKE :cargo AND d.sg_part LIKE UPPER(:nome)")
 })
 @Entity
 @XmlRootElement
 public class Despesacandidato2002 implements Serializable {
-    
-    @Id 
+
+    @Id
     private Integer id;
     private String sequencial_candidato;
     private String sg_uf;
@@ -151,5 +154,4 @@ public class Despesacandidato2002 implements Serializable {
         this.ds_titulo = ds_titulo;
     }
 
-    
 }
