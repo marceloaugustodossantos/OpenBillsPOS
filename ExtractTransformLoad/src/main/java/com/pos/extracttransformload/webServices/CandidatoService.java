@@ -152,7 +152,7 @@ public class CandidatoService {
         Map<String, List<Doacao>> doacoes = new HashMap<>();
         for (Receitacandidato2004 r : receitas2004) {
             List<Doacao> listDoacoes = doacoes.get(r.getNo_doador());
-            if(listDoacoes == null){
+            if (listDoacoes == null) {
                 listDoacoes = new ArrayList<>();
             }
             listDoacoes.add(new Doacao(r.getNo_cand(), r.getSg_part(), r.getVr_receita(), r.getDt_receita()));
@@ -161,7 +161,7 @@ public class CandidatoService {
 
         for (Receitacandidato2002 r : receitas2002) {
             List<Doacao> listDoacoes = doacoes.get(r.getNo_doador());
-            if(listDoacoes == null){
+            if (listDoacoes == null) {
                 listDoacoes = new ArrayList<>();
             }
             listDoacoes.add(new Doacao(r.getNo_cand(), r.getSg_part(), r.getVr_receita(), r.getDt_receita()));
@@ -180,6 +180,7 @@ public class CandidatoService {
 
         return doadores;
     }
+
     @WebMethod(operationName = "listarMunicipiosPorNome")
     @WebResult(name = "municipios")
     public Set<Municipios> listarMunicipiosPorNome(@WebParam(name = "nome") String nome) {
@@ -220,37 +221,36 @@ public class CandidatoService {
         }
 
         List<DadosCandidatosPorMunicipio> candidatosComMaioresGastos = new ArrayList<>();
-        candidatosComMaioresGastos.addAll(candidatosSemRepeticao);        
+        candidatosComMaioresGastos.addAll(candidatosSemRepeticao);
         Collections.sort(candidatosComMaioresGastos);
-        
+
         List<DadosCandidatosPorMunicipio> retorno = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
+        for (int i = 0; i < 10; i++) {
             retorno.add(candidatosComMaioresGastos.get(i));
         }
-        
-        return retorno;       
+
+        return retorno;
     }
-    
+
     @WebMethod(operationName = "listarPartidosPorNome")
     @WebResult(name = "partidospornome")
     public Set<Partidos> listarPartidosPorNome(@WebParam(name = "nome") String nome) {
 
-        Map<String, Object> parametros = new HashMap<>();
-        parametros.put("nome", "%" + nome + "%");
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("nome", "%" + nome + "%");
 
         List<Despesacandidato2002> despesas2002 = daoDespesaCandidato2002.consultaLista("buscar.partidosdecandidatos2002.pornome", parametros);
-        List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.partidosdecandidatos2004.pornome", parametros);
-        
-        Set<Partidos> partidos = new HashSet<>();
-        
+            List<Despesacandidato2004> despesas2004 = daoDespesaCandidato2004.consultaLista("buscar.partidosdecandidatos2004.pornome", parametros);
+
+            Set<Partidos> partidos = new HashSet<>();
+
         for (Despesacandidato2002 dc2 : despesas2002){
             partidos.add(new Partidos(dc2.getSg_part()));
         }
         for (Despesacandidato2004 dc4 : despesas2004){
-            partidos.add(new Partidos(dc4.getSg_part()));
-        }                
-        
-        return partidos;       
-    }
+                partidos.add(new Partidos(dc4.getSg_part()));
+            }
+            return partidos;
+        }
 
 }
