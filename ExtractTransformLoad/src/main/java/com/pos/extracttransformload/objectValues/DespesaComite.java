@@ -3,74 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pos.extracttransformload.entities;
+package com.pos.extracttransformload.objectValues;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
  * @author marcelo
  */
-@NamedQueries({
-    @NamedQuery(
-            name = "buscar.despesascomite2002.porestado", 
-            query = "SELECT d FROM Despesacomite2002 d WHERE d.sg_uf =:estado")
-})
-@Entity
-@XmlRootElement
-public class Despesacomite2002 implements Serializable {
+@XmlType
+public class DespesaComite implements Serializable{
     
-    @Id 
-    private Integer id;
-    private String sg_uf;
-    private String sg_part;
-    private String ds_org_desp;
-    private String dt_docreceita;
-    private String cd_cpf_cgc;
-    private String sg_uf_fornecedor;
     private String no_for;
     private double vr_despesa;
     private String ds_titulo;
+    private String dt_docreceita;
+    private String cd_cpf_cgc;
+    private String sg_uf_fornecedor;
 
-    public Despesacomite2002() {
+
+    public DespesaComite() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSg_uf() {
-        return sg_uf;
-    }
-
-    public void setSg_uf(String sg_uf) {
-        this.sg_uf = sg_uf;
-    }
-
-    public String getSg_part() {
-        return sg_part;
-    }
-
-    public void setSg_part(String sg_part) {
-        this.sg_part = sg_part;
-    }
-
-    public String getDs_org_desp() {
-        return ds_org_desp;
-    }
-
-    public void setDs_org_desp(String ds_org_desp) {
-        this.ds_org_desp = ds_org_desp;
+    public DespesaComite(String no_for, double vr_despesa, String ds_titulo, String dt_docreceita, String cd_cpf_cgc, String sg_uf_fornecedor) {
+        this.no_for = no_for;
+        this.vr_despesa = vr_despesa;
+        this.ds_titulo = ds_titulo;
+        this.dt_docreceita = dt_docreceita;
+        this.cd_cpf_cgc = cd_cpf_cgc;
+        this.sg_uf_fornecedor = sg_uf_fornecedor;
     }
 
     public String getDt_docreceita() {

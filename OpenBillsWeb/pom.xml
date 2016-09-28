@@ -123,6 +123,24 @@
                         <id>wsimport-generate-CandidatoServiceService</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/ExtractTransformLoad/ComiteService.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <packageName>com.pos.openbillsweb.webserviceComiteCli</packageName>
+                            <vmArgs>
+                                <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                            </vmArgs>
+                            <wsdlLocation>http://localhost:8080/ExtractTransformLoad/ComiteService?wsdl</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/ComiteService.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-ComiteService</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>

@@ -3,34 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.pos.extracttransformload.entities;
+package com.pos.extracttransformload.objectValues;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
  * @author marcelo
  */
-@NamedQueries({
-    @NamedQuery(
-            name = "buscar.receitascomite2002.porestado", 
-            query = "SELECT r FROM Receitacomite2002 r WHERE r.sg_uf =:estado")
-})
-@Entity
-@XmlRootElement
-public class Receitacomite2002 implements Serializable {
-    
-    @Id 
-    private Integer id;
-    private String sg_uf;
-    private String sg_part;
-    private String ds_orgao;
+@XmlType
+public class ReceitaComite implements Serializable{
+ 
     private String dt_receita;
     private String cd_cpf_cgc_doa;
     private String sg_uf_doador;
@@ -38,39 +22,16 @@ public class Receitacomite2002 implements Serializable {
     private double vr_receita;
     private String tp_recurso;
 
-    public Receitacomite2002() {
+    public ReceitaComite() {
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getSg_uf() {
-        return sg_uf;
-    }
-
-    public void setSg_uf(String sg_uf) {
-        this.sg_uf = sg_uf;
-    }
-
-    public String getSg_part() {
-        return sg_part;
-    }
-
-    public void setSg_part(String sg_part) {
-        this.sg_part = sg_part;
-    }
-
-    public String getDs_orgao() {
-        return ds_orgao;
-    }
-
-    public void setDs_orgao(String ds_orgao) {
-        this.ds_orgao = ds_orgao;
+    public ReceitaComite(String dt_receita, String cd_cpf_cgc_doa, String sg_uf_doador, String no_doador, double vr_receita, String tp_recurso) {
+        this.dt_receita = dt_receita;
+        this.cd_cpf_cgc_doa = cd_cpf_cgc_doa;
+        this.sg_uf_doador = sg_uf_doador;
+        this.no_doador = no_doador;
+        this.vr_receita = vr_receita;
+        this.tp_recurso = tp_recurso;
     }
 
     public String getDt_receita() {
@@ -120,7 +81,7 @@ public class Receitacomite2002 implements Serializable {
     public void setTp_recurso(String tp_recurso) {
         this.tp_recurso = tp_recurso;
     }
-
-        
+    
+    
     
 }

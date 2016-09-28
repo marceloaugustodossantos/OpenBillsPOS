@@ -47,12 +47,7 @@ body{
 } 
 
 .heightTumbnail{
-    min-height: 150px;
-}
-
-.separador{
-    padding-top: 15px;
-    padding-bottom: 15px;  
+    height: 260px;
 }
 
 #carousel-example-generic{

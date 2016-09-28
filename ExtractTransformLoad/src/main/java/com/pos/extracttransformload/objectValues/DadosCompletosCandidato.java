@@ -116,7 +116,7 @@ public class DadosCompletosCandidato  implements Serializable{
     public void setReceitas(List<ReceitaCandidato> receitas) {
         this.receitas = receitas;
     }
-
+ 
     
     
 }

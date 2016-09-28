@@ -12,7 +12,10 @@ import com.pos.extracttransformload.entities.Despesacandidato2002;
 import com.pos.extracttransformload.entities.Despesacandidato2004;
 import com.pos.extracttransformload.entities.Receitacandidato2002;
 import com.pos.extracttransformload.entities.Receitacandidato2004;
+import com.pos.extracttransformload.entities.Receitacomite2002;
+import com.pos.extracttransformload.entities.Receitacomite2004;
 import com.pos.extracttransformload.exceptions.CandidatoNaoEncontradoExcetpion;
+import com.pos.extracttransformload.objectValues.Comite;
 import com.pos.extracttransformload.objectValues.DadosCandidatosPorMunicipio;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,10 +26,12 @@ import javax.jws.WebParam;
 import com.pos.extracttransformload.objectValues.DadosCompletosCandidato;
 import com.pos.extracttransformload.objectValues.DadosResumidosCandidato;
 import com.pos.extracttransformload.objectValues.DespesaCandidato;
+import com.pos.extracttransformload.objectValues.DespesaComite;
 import com.pos.extracttransformload.objectValues.Doacao;
 import com.pos.extracttransformload.objectValues.Doador;
 import com.pos.extracttransformload.objectValues.ReceitaCandidato;
 import com.pos.extracttransformload.objectValues.Municipios;
+import com.pos.extracttransformload.objectValues.ReceitaComite;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -262,5 +267,5 @@ public class CandidatoService {
 //        }
 //        return retorno;
     }
-
+    
 }

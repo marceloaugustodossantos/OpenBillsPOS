@@ -18,16 +18,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author marcelo
  */
 @NamedQueries({
-    @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porestado", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado"),
-    @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.ano =:ano"),
-    @NamedQuery(
-            name = "buscar.candidatoscommaioresdespesas.porestadoeano", 
-            query = "SELECT d FROM DespesaCandidato d WHERE d.sg_ue_superior =:estado AND d.ano =:ano"
-    )
+   @NamedQuery(
+            name = "buscar.receitascomite2004.porestado", 
+            query = "SELECT r FROM Receitacomite2004 r WHERE r.sg_ue_sup =:estado")
 })
 @Entity
 @XmlRootElement

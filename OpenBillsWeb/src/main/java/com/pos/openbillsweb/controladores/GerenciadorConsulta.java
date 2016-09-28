@@ -5,6 +5,11 @@
  */
 package com.pos.openbillsweb.controladores;
 
+import com.pos.openbillsweb.webserviceComiteCli.Comite;
+import com.pos.openbillsweb.webserviceComiteCli.ComiteService;
+import com.pos.openbillsweb.webserviceComiteCli.ComiteService_Service;
+import com.pos.openbillsweb.webserviceComiteCli.DespesaComite;
+import com.pos.openbillsweb.webserviceComiteCli.ReceitaComite;
 import com.pos.openbillsweb.webservicesCli.CandidatoNaoEncontradoExcetpion_Exception;
 import com.pos.openbillsweb.webservicesCli.CandidatoService;
 import com.pos.openbillsweb.webservicesCli.CandidatoServiceService;
@@ -33,14 +38,18 @@ import org.primefaces.context.RequestContext;
 public class GerenciadorConsulta implements Serializable {
 
     CandidatoService candidatoService;
-
+    ComiteService comiteService;
+    
     String nomeBusca = "";
     String anoBusca = "";
     String cidadeBusca = "";
+    String estadoBusca = "";
     String nomeMunicipioPesquisado = "";
     DadosCompletosCandidato dadosCandidato = new DadosCompletosCandidato();
     List<DadosResumidosCandidato> dadosCandidatos = new ArrayList<>();
     List<Doador> doadores = new ArrayList<>();
+    List<Comite> comites = new ArrayList<>();
+    Comite comite = new Comite();
     Doador doador = new Doador();
     
     List<Municipios> listaMunicipios = new ArrayList<>();
@@ -56,9 +65,13 @@ public class GerenciadorConsulta implements Serializable {
     public String buscarCandidatosQueMaisGastaram() {
         return "candidatos_Que_Mais_Gastaram_Por_Cidade.xhtml";
     }
+    public String buscarInformacoesDeComites() {
+        return "comites.xhtml";
+    }
 
     public GerenciadorConsulta() {
         candidatoService = new CandidatoServiceService().getCandidatoServicePort();
+        comiteService = new ComiteService_Service().getComiteServicePort();
     }
 
     public String listarCandidatosPorNome() {
@@ -69,9 +82,19 @@ public class GerenciadorConsulta implements Serializable {
         this.doadores = candidatoService.listarDoadoresPorNome(nomeBusca);
         return "doadores.xhtml";
     }
+    public String listarComitesPorEstado(){
+        this.comites = comiteService.listarComites(estadoBusca, anoBusca);
+        estadoBusca = "";
+        anoBusca ="";
+        return "comites.xhtml";
+    }
     public String visualizarDoador(Doador d){
         doador = d;
         return "doador.xhtml";
+    }
+    public String visualizarComite(Comite c){
+        comite = c;
+        return "comite.xhtml";
     }
     
 
@@ -155,15 +178,25 @@ public class GerenciadorConsulta implements Serializable {
         return  (int) ((valorDoado * 100) / total);
         
     }
-    public int getPorcentagemDespesa(double valor){
-        double total = caucularValorTotalDeDespesas();
+    
+    public int getPorcentagemDespesaCandidato(double valor){
+        double total = caucularValorTotalDeDespesasCandidato();
         return  (int) ((valor * 100) / total);
-        
     }
-    public int getPorcentagemReceita(double valor){
-        double total = caucularValorTotalDeReceitas();
+    
+    public int getPorcentagemReceitaCandidato(double valor){
+        double total = caucularValorTotalDeReceitasCandidato();
+        return  (int) ((valor * 100) / total);   
+    }
+    
+    public int getPorcentagemDespesaComite(double valor){
+        double total = caucularValorTotalDeDespesasComite();
         return  (int) ((valor * 100) / total);
-        
+    }
+    
+    public int getPorcentagemReceitaComite(double valor){
+        double total = caucularValorTotalDeReceitasComite();
+        return  (int) ((valor * 100) / total);   
     }
 
     public double caucularValorTotalDoado() {
@@ -173,17 +206,31 @@ public class GerenciadorConsulta implements Serializable {
         }
         return total;
     }
-    public double caucularValorTotalDeDespesas() {
+    public double caucularValorTotalDeDespesasCandidato() {
         double total = 0;
         for(DespesaCandidato d : dadosCandidato.getDespesas()){
             total += d.getValorDespesa();
         }
         return total;
     }
-    public double caucularValorTotalDeReceitas() {
+    public double caucularValorTotalDeReceitasCandidato() {
         double total = 0;
         for(ReceitaCandidato r : dadosCandidato.getReceitas()){
             total += r.getValorReceita();
+        }
+        return total;
+    }
+    public double caucularValorTotalDeDespesasComite() {
+        double total = 0;
+        for(DespesaComite d : comite.getDespesas()){
+            total += d.getVrDespesa();
+        }
+        return total;
+    }
+    public double caucularValorTotalDeReceitasComite() {
+        double total = 0;
+        for(ReceitaComite r : comite.getReceitas()){
+            total += r.getVrReceita();
         }
         return total;
     }
@@ -211,6 +258,30 @@ public class GerenciadorConsulta implements Serializable {
 
     public void setNomeMunicipioPesquisado(String nomeMunicipioPesquisado) {
         this.nomeMunicipioPesquisado = nomeMunicipioPesquisado;
+    }
+
+    public List<Comite> getComites() {
+        return comites;
+    }
+
+    public void setComites(List<Comite> comites) {
+        this.comites = comites;
+    }
+
+    public String getEstadoBusca() {
+        return estadoBusca;
+    }
+
+    public void setEstadoBusca(String estadoBusca) {
+        this.estadoBusca = estadoBusca;
+    }
+
+    public Comite getComite() {
+        return comite;
+    }
+
+    public void setComite(Comite comite) {
+        this.comite = comite;
     }
 
 }

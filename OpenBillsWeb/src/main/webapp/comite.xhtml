@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
@@ -9,7 +10,9 @@
         <script src="assets/js/jquery.js" type="text/javascript"></script>
         <script src="assets/js/bootstrap.js" type="text/javascript"></script>
         <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"/>     </h:head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8"/> 
+    </h:head>
     <h:body>
 
         <div class="container">
@@ -32,7 +35,7 @@
                 <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading fonteMedia">
-                            Informações do candidato
+                            Informações do comitê
                         </div>
                         <div class="panel-body">
                             <div class="panel panel-default">
@@ -44,8 +47,8 @@
                                             </a>
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading">${gerenciadorConsulta.dadosCandidato.noCand}</h4>
-                                            Nome do candidato
+                                            <h4 class="media-heading">${gerenciadorConsulta.comite.dsOrgao}</h4>
+                                            Nome do comitê
                                         </div>
                                     </div>
                                 </div>
@@ -55,42 +58,12 @@
                                     <div class="media">
                                         <div class="media-left">
                                             <a href="#">
-                                                <span class="glyphicon glyphicon-briefcase glyphiconGrande"></span>
+                                                <span class="glyphicon glyphicon-map-marker glyphiconGrande"></span>
                                             </a>
                                         </div>
                                         <div class="media-body">
-                                            <h4 class="media-heading">#{gerenciadorConsulta.dadosCandidato.dsCargo}</h4>
-                                            Tipo de candidatura
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <span class="glyphicon glyphicon-flag glyphiconGrande"></span>
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">#{gerenciadorConsulta.dadosCandidato.noUe}</h4>
-                                            Unidade da Federação
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <span class="glyphicon glyphicon-home glyphiconGrande"></span>
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">#{gerenciadorConsulta.dadosCandidato.sgPart}</h4>
-                                            Partido
+                                            <h4 class="media-heading">${gerenciadorConsulta.comite.sgUf}</h4>
+                                            Estado
                                         </div>
                                     </div>
                                 </div>
@@ -101,32 +74,36 @@
                 <div class="col-md-8">
                     <div class="panel panel-primary">
                         <div class="panel-heading fonteMedia">
-                            Despesas e receitas do candidato
+                            Despesas e receitas do comitê
                         </div>
                         <div class="panel-body" style="min-height: 300px">
                             <div class="col-md-12">
                                 <div class="cabecalhoColuna"><h3>Despesas</h3></div>                                            
-                                <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.dadosCandidato.despesas}" var="d">
+                                <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.comite.despesas}" var="d">
                                     <h:column>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <b>Tipo de despesa </b><br></br>
-                                                <h:outputText value="#{d.tipoDespesa}"></h:outputText>
-                                            </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <b>Fornecedor </b><br></br>
-                                                <h:outputText value="#{d.nomeFornecedor}"></h:outputText>
+                                                <h:outputText value="#{d.noFor}"></h:outputText>
                                             </div>
-                                            <div class="col-md-1 text-right">
+                                            <div class="col-md-4">
+                                                <b>Tipo de despesa </b><br></br>
+                                                <h:outputText value="#{d.dsTitulo}"></h:outputText>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <b>Partido</b><br></br>
+                                                <span class="label label-warning"><h:outputText value="#{gerenciadorConsulta.comite.sgPart}"></h:outputText></span>
+                                            </div>
+                                            <div class="col-md-2 text-right">
                                                 <b>Valor R$ </b><br></br>
-                                                <span class="label label-danger"><h:outputText value="#{d.valorDespesa}"></h:outputText></span>
+                                                <span class="label label-danger"><h:outputText value="#{d.vrDespesa}"></h:outputText></span>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-info" role="progressbar"  
-                                                         style="width: #{gerenciadorConsulta.getPorcentagemDespesaCandidato(d.valorDespesa)}%;">
+                                                         style="width: #{gerenciadorConsulta.getPorcentagemDespesaComite(d.vrDespesa)}%;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -136,32 +113,32 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="cabecalhoColuna"><h3>Receitas</h3></div>                                            
-                                <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.dadosCandidato.receitas}" var="r">
+                                <h:dataTable class="table table-striped" value="#{gerenciadorConsulta.comite.receitas}" var="r">
                                     <h:column>
                                         
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <b>Doador </b><br></br>
-                                                <h:outputText value="#{r.nomeDoador}"></h:outputText>
+                                                <h:outputText value="#{r.noDoador}"></h:outputText>
                                             </div>
-                                            <div class="col-md-2">
-                                                <b>Data </b><br></br>
-                                                <h:outputText value="#{r.dataReceita}"></h:outputText>
-                                            </div>
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <b>Tipo de recurso </b><br></br>
-                                                <h:outputText value="#{r.tipoRecurso}"></h:outputText>
+                                                <h:outputText value="#{r.tpRecurso}"></h:outputText>
                                             </div>
-                                            <div class="col-md-1 text-right">
+                                            <div class="col-md-2 text-right">
                                                 <b>Valor R$ </b><br></br>
-                                                <span class="label label-danger"><h:outputText value="#{r.valorReceita}"></h:outputText></span>
+                                                <span class="label label-warning"><h:outputText value="#{gerenciadorConsulta.comite.sgPart}"></h:outputText></span>
+                                            </div>
+                                            <div class="col-md-2 text-right">
+                                                <b>Valor R$ </b><br></br>
+                                                <span class="label label-danger"><h:outputText value="#{r.vrReceita}"></h:outputText></span>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="progress">
                                                     <div class="progress-bar progress-bar-info" role="progressbar"  
-                                                         style="width: #{gerenciadorConsulta.getPorcentagemReceitaCandidato(r.valorReceita)}%;">
+                                                         style="width: #{gerenciadorConsulta.getPorcentagemReceitaComite(r.vrReceita)}%;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -174,6 +151,7 @@
                 </div>
             </div>
         </div>
+        
     </h:body>
 </html>
 
